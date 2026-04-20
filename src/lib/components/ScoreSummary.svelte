@@ -53,9 +53,13 @@
   <section class="score-summary full">
     <header class="summary-header">
       <div>
-        <span class="panel-eyebrow">Result</span>
-        <h2>Your formatter profile</h2>
-        <p>{summaryCopy}</p>
+        <span class="panel-eyebrow">Next</span>
+        <h2>The recommendation screen comes next.</h2>
+        <p>
+          This last section is intentionally quiet for now. Finish the remaining
+          questions, review the choices above, or restart the run and compare
+          again.
+        </p>
       </div>
 
       {#if onReset}
@@ -66,26 +70,28 @@
     </header>
 
     <div class="summary-stats">
-      <div class="summary-stat pint">
-        <span class="summary-label">Pint</span>
-        <strong>{pintPercent}%</strong>
-        <span>{pintVotes} picks</span>
-      </div>
-      <div class="summary-stat php">
-        <span class="summary-label">PHP-CS-Fixer</span>
-        <strong>{phpPercent}%</strong>
-        <span>{phpVotes} picks</span>
-      </div>
       <div class="summary-stat neutral">
-        <span class="summary-label">Remaining</span>
+        <span class="summary-label">Answered</span>
+        <strong>{answeredCount}</strong>
+        <span>of {questions.length} questions</span>
+      </div>
+
+      <div class="summary-stat neutral">
+        <span class="summary-label">Still open</span>
         <strong>{remaining}</strong>
-        <span>unanswered</span>
+        <span>questions left to decide</span>
+      </div>
+
+      <div class="summary-stat neutral">
+        <span class="summary-label">Soon</span>
+        <strong>Match</strong>
+        <span>Recommendation and starter config</span>
       </div>
     </div>
 
     <p class="summary-note">
-      The score is stored in this browser so we can use it when we build the
-      configuration generator next.
+      The answers are still stored in this browser, so the future recommendation
+      step can build on the same run.
     </p>
   </section>
 {/if}

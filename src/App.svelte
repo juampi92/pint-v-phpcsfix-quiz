@@ -18,7 +18,6 @@
     AUTO_ADVANCE_DELAY,
     animateVerticalScroll,
     findClosestSectionIndex,
-    findFirstIncompleteIndex,
     getSectionScrollTop,
     isEditableKeyboardTarget,
   } from './lib/navigation';
@@ -51,13 +50,13 @@
     selectedSectionIndex < 0
       ? 'Choose a rule to begin'
       : summarySelected
-        ? 'Your formatter profile'
+        ? 'Next steps placeholder'
         : formatRuleName(questions[selectedSectionIndex]?.rule ?? '');
   $: selectedPositionLabel =
     selectedSectionIndex < 0
       ? 'No rule selected'
       : summarySelected
-        ? 'Results'
+        ? 'Final stage'
         : `Rule ${selectedSectionIndex + 1} of ${questions.length}`;
   $: hasNextSection = selectedSectionIndex < totalSections - 1;
 
@@ -457,20 +456,51 @@
     <main class="page">
       <section class="hero">
         <div class="hero-copy">
-          <span class="hero-kicker">Pint vs PHP-CS-Fixer defaults</span>
+          <div class="hero-meta">
+            <span class="hero-kicker">Formatter Match</span>
+            <span class="hero-meta-note">A blind side-by-side for PHP style defaults</span>
+          </div>
+
           <h1>Pick the formatter output you would actually keep.</h1>
           <p class="hero-lead">
-            Each question starts from the same PHP sample and shows two possible
-            formatter results. The quiz helps you compare them rule by rule and
-            see which default style matches your taste.
+            Compare Laravel Pint and raw PHP-CS-Fixer defaults one visible rule
+            at a time. Vote on the code you would merge first. We will worry
+            about naming the winner and generating configuration after that.
           </p>
+
+          <div class="hero-summary">
+            <div class="hero-summary-item">
+              <strong>{quizDocument.counts.quiz_questions}</strong>
+              <span>real rule differences</span>
+            </div>
+
+            <div class="hero-summary-item">
+              <strong>Blind</strong>
+              <span>sides stay anonymous until you choose</span>
+            </div>
+
+            <div class="hero-summary-item">
+              <strong>Local</strong>
+              <span>answers stay in this browser for now</span>
+            </div>
+          </div>
         </div>
 
         <div class="hero-side">
-          <div class="hero-stat">
-            <span class="panel-eyebrow">Quiz</span>
-            <strong>{quizDocument.counts.quiz_questions} questions</strong>
-            <p>Real fixer examples, pre-rendered so you can compare them fast.</p>
+          <div class="hero-sketch" aria-hidden="true">
+            <div class="hero-sticker hero-sticker-pint">
+              <span class="hero-sticker-tag">Option A</span>
+              <strong>One default</strong>
+              <p>Opinionated and ready to go.</p>
+            </div>
+
+            <div class="hero-sticker hero-sticker-php">
+              <span class="hero-sticker-tag">Option B</span>
+              <strong>The other default</strong>
+              <p>Rawer and more choose-your-path.</p>
+            </div>
+
+            <span class="hero-sketch-note">Choose the code, not the badge.</span>
           </div>
 
           <div class="hero-instructions">
@@ -480,8 +510,8 @@
                 <Keycap label="↓" />
               </div>
               <div>
-                <strong>Move between rules</strong>
-                <p>Select the previous or next rule before voting.</p>
+                <strong>Read the sample</strong>
+                <p>Move between rules and keep the current one centered.</p>
               </div>
             </div>
 
@@ -491,8 +521,8 @@
                 <Keycap label="→" />
               </div>
               <div>
-                <strong>Vote left or right</strong>
-                <p>The selected rule stays in view, then moves on after voting.</p>
+                <strong>Pick the output you prefer</strong>
+                <p>Click a side or use the arrows. The labels reveal after the vote.</p>
               </div>
             </div>
           </div>
@@ -602,20 +632,6 @@
             {questions}
             onReset={resetAnswers}
           />
-
-          <section class="footer-meta">
-            <div class="footer-card">
-              <span class="panel-eyebrow">Versions</span>
-              <strong>Laravel Pint</strong>
-              <p>{quizDocument.package_versions['laravel/pint']}</p>
-            </div>
-
-            <div class="footer-card">
-              <span class="panel-eyebrow">Versions</span>
-              <strong>PHP-CS-Fixer</strong>
-              <p>{quizDocument.package_versions['friendsofphp/php-cs-fixer']}</p>
-            </div>
-          </section>
         </footer>
       </section>
     </main>

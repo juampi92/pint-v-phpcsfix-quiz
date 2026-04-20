@@ -1,6 +1,6 @@
 {
     "name": "juanpablo/php-cs-fixer-defaults",
-    "description": "Export deterministic differences between Laravel Pint defaults and augmented PHP-CS-Fixer defaults.",
+    "description": "Export deterministic differences between Laravel Pint defaults and raw PHP-CS-Fixer defaults.",
     "type": "project",
     "require-dev": {
         "laravel/pint": "^1.0"
