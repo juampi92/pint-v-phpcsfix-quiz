@@ -1,0 +1,227 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.com/schema/pint-php-cs-fixer-differences.schema.json",
+    "title": "Pint vs PHP-CS-Fixer Differences",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "package_versions",
+        "differences",
+        "limitations"
+    ],
+    "properties": {
+        "schema_version": {
+            "type": "integer",
+            "const": 1
+        },
+        "package_versions": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "laravel/pint",
+                "friendsofphp/php-cs-fixer"
+            ],
+            "properties": {
+                "laravel/pint": {
+                    "type": "string"
+                },
+                "friendsofphp/php-cs-fixer": {
+                    "type": "string"
+                }
+            }
+        },
+        "differences": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/difference"
+            }
+        },
+        "limitations": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "$defs": {
+        "jsonValue": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "boolean"
+                },
+                {
+                    "type": "null"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/jsonValue"
+                    }
+                },
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/$defs/jsonValue"
+                    }
+                }
+            ]
+        },
+        "ruleState": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "enabled",
+                "parameters"
+            ],
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "parameters": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/$defs/jsonValue"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "fixer": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "class",
+                "configurable",
+                "path",
+                "github"
+            ],
+            "properties": {
+                "class": {
+                    "type": "string"
+                },
+                "configurable": {
+                    "type": "boolean"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "github": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/githubReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            }
+        },
+        "githubReference": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "url",
+                "path",
+                "start_line",
+                "end_line"
+            ],
+            "properties": {
+                "url": {
+                    "type": "string"
+                },
+                "path": {
+                    "type": "string"
+                },
+                "start_line": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "end_line": {
+                    "type": "integer",
+                    "minimum": 1
+                }
+            }
+        },
+        "references": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "php_cs_fixer",
+                "pint"
+            ],
+            "properties": {
+                "php_cs_fixer": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/githubReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "pint": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/githubReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            }
+        },
+        "difference": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "rule",
+                "category",
+                "pint",
+                "php_cs_fixer",
+                "fixer",
+                "references"
+            ],
+            "properties": {
+                "rule": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string",
+                    "enum": [
+                        "only_php_cs_fixer",
+                        "only_pint",
+                        "different_configuration"
+                    ]
+                },
+                "pint": {
+                    "$ref": "#/$defs/ruleState"
+                },
+                "php_cs_fixer": {
+                    "$ref": "#/$defs/ruleState"
+                },
+                "fixer": {
+                    "$ref": "#/$defs/fixer"
+                },
+                "references": {
+                    "$ref": "#/$defs/references"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "class_definition": {
+    "skip": true,
+    "reason": "The current Pint and PHP-CS-Fixer parameters normalize to the same output because `single_line` is enabled on both sides, so the remaining parameter differences are not observable in a standalone quiz sample."
+  },
+  "no_unneeded_control_parentheses": {
+    "code": "<?php\n\nfunction items(iterable $items): iterable\n{\n    yield from($items);\n}\n",
+    "file_path": "app/Support/items.php",
+    "reason": "Exercises `yield_from`, which is enabled in PHP-CS-Fixer's defaults but not in Pint's preset."
+  },
+  "phpdoc_scalar": {
+    "code": "<?php\n\n/**\n * @return never-return\n */\nfunction halt()\n{\n    exit(1);\n}\n",
+    "file_path": "app/Support/halt.php",
+    "reason": "Uses a scalar alias that PHP-CS-Fixer normalizes and Pint intentionally leaves alone."
+  },
+  "psr_autoloading": {
+    "code": "<?php\nnamespace PhpCsFixer\\FIXER\\Basic;\nclass InvalidName {}\n",
+    "file_path": "src/PhpCsFixer/FIXER/Basic/PsrAutoloadingFixer.php",
+    "reason": "This fixer depends on the file path, so the override supplies a stable path that makes the class-name correction visible."
+  },
+  "general_phpdoc_tag_rename": {
+    "skip": true,
+    "reason": "Irrelevant"
+  }
+}
+

@@ -1,0 +1,4205 @@
+{
+    "schema_version": 1,
+    "package_versions": {
+        "laravel/pint": "v1.29.0",
+        "friendsofphp/php-cs-fixer": "v3.94.2"
+    },
+    "differences": [
+        {
+            "rule": "align_multiline_comment",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "comment_type": "phpdocs_only"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\AlignMultilineCommentFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/AlignMultilineCommentFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/AlignMultilineCommentFixer.php#L46-L187",
+                    "path": "src/Fixer/Phpdoc/AlignMultilineCommentFixer.php",
+                    "start_line": 46,
+                    "end_line": 187
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/AlignMultilineCommentFixer.php#L46-L187",
+                    "path": "src/Fixer/Phpdoc/AlignMultilineCommentFixer.php",
+                    "start_line": 46,
+                    "end_line": 187
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "array_push",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Alias\\ArrayPushFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/ArrayPushFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/ArrayPushFixer.php#L29-L210",
+                    "path": "src/Fixer/Alias/ArrayPushFixer.php",
+                    "start_line": 29,
+                    "end_line": 210
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/ArrayPushFixer.php#L29-L210",
+                    "path": "src/Fixer/Alias/ArrayPushFixer.php",
+                    "start_line": 29,
+                    "end_line": 210
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "attribute_block_no_spaces",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\AttributeNotation\\AttributeBlockNoSpacesFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/AttributeNotation/AttributeBlockNoSpacesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/AttributeNotation/AttributeBlockNoSpacesFixer.php#L33-L107",
+                    "path": "src/Fixer/AttributeNotation/AttributeBlockNoSpacesFixer.php",
+                    "start_line": 33,
+                    "end_line": 107
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/AttributeNotation/AttributeBlockNoSpacesFixer.php#L33-L107",
+                    "path": "src/Fixer/AttributeNotation/AttributeBlockNoSpacesFixer.php",
+                    "start_line": 33,
+                    "end_line": 107
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "backtick_to_shell_exec",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Alias\\BacktickToShellExecFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/BacktickToShellExecFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/BacktickToShellExecFixer.php#L30-L151",
+                    "path": "src/Fixer/Alias/BacktickToShellExecFixer.php",
+                    "start_line": 30,
+                    "end_line": 151
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/BacktickToShellExecFixer.php#L30-L151",
+                    "path": "src/Fixer/Alias/BacktickToShellExecFixer.php",
+                    "start_line": 30,
+                    "end_line": 151
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "blank_line_before_statement",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "statements": [
+                        "continue",
+                        "return"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "statements": [
+                        "break",
+                        "case",
+                        "continue",
+                        "declare",
+                        "default",
+                        "exit",
+                        "goto",
+                        "include",
+                        "include_once",
+                        "phpdoc",
+                        "require",
+                        "require_once",
+                        "return",
+                        "switch",
+                        "throw",
+                        "try",
+                        "yield",
+                        "yield_from"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Whitespace\\BlankLineBeforeStatementFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Whitespace/BlankLineBeforeStatementFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Whitespace/BlankLineBeforeStatementFixer.php#L47-L406",
+                    "path": "src/Fixer/Whitespace/BlankLineBeforeStatementFixer.php",
+                    "start_line": 47,
+                    "end_line": 406
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Whitespace/BlankLineBeforeStatementFixer.php#L47-L406",
+                    "path": "src/Fixer/Whitespace/BlankLineBeforeStatementFixer.php",
+                    "start_line": 47,
+                    "end_line": 406
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L13-L18",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 13,
+                    "end_line": 18
+                }
+            }
+        },
+        {
+            "rule": "braces_position",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "allow_single_line_anonymous_functions": false,
+                    "allow_single_line_empty_anonymous_classes": false,
+                    "anonymous_classes_opening_brace": "next_line_unless_newline_at_signature_end",
+                    "anonymous_functions_opening_brace": "same_line",
+                    "classes_opening_brace": "next_line_unless_newline_at_signature_end",
+                    "control_structures_opening_brace": "same_line",
+                    "functions_opening_brace": "next_line_unless_newline_at_signature_end"
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "allow_single_line_anonymous_functions": true,
+                    "allow_single_line_empty_anonymous_classes": true,
+                    "anonymous_classes_opening_brace": "same_line",
+                    "anonymous_functions_opening_brace": "same_line",
+                    "classes_opening_brace": "next_line_unless_newline_at_signature_end",
+                    "control_structures_opening_brace": "same_line",
+                    "functions_opening_brace": "next_line_unless_newline_at_signature_end"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Basic\\BracesPositionFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/BracesPositionFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Basic/BracesPositionFixer.php#L60-L506",
+                    "path": "src/Fixer/Basic/BracesPositionFixer.php",
+                    "start_line": 60,
+                    "end_line": 506
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Basic/BracesPositionFixer.php#L60-L506",
+                    "path": "src/Fixer/Basic/BracesPositionFixer.php",
+                    "start_line": 60,
+                    "end_line": 506
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L21-L29",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 21,
+                    "end_line": 29
+                }
+            }
+        },
+        {
+            "rule": "class_attributes_separation",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "elements": {
+                        "const": "one",
+                        "method": "one",
+                        "property": "one",
+                        "trait_import": "none"
+                    }
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "elements": {
+                        "method": "one"
+                    }
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\ClassAttributesSeparationFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/ClassAttributesSeparationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ClassAttributesSeparationFixer.php#L61-L605",
+                    "path": "src/Fixer/ClassNotation/ClassAttributesSeparationFixer.php",
+                    "start_line": 61,
+                    "end_line": 605
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ClassAttributesSeparationFixer.php#L61-L605",
+                    "path": "src/Fixer/ClassNotation/ClassAttributesSeparationFixer.php",
+                    "start_line": 61,
+                    "end_line": 605
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L31-L38",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 31,
+                    "end_line": 38
+                }
+            }
+        },
+        {
+            "rule": "class_definition",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "inline_constructor_arguments": true,
+                    "multi_line_extends_each_single_line": true,
+                    "single_item_single_line": true,
+                    "single_line": true,
+                    "space_before_parenthesis": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "inline_constructor_arguments": true,
+                    "multi_line_extends_each_single_line": false,
+                    "single_item_single_line": false,
+                    "single_line": true,
+                    "space_before_parenthesis": false
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\ClassDefinitionFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/ClassDefinitionFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ClassDefinitionFixer.php#L67-L569",
+                    "path": "src/Fixer/ClassNotation/ClassDefinitionFixer.php",
+                    "start_line": 67,
+                    "end_line": 569
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ClassDefinitionFixer.php#L67-L569",
+                    "path": "src/Fixer/ClassNotation/ClassDefinitionFixer.php",
+                    "start_line": 67,
+                    "end_line": 569
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L39-L43",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 39,
+                    "end_line": 43
+                }
+            }
+        },
+        {
+            "rule": "class_reference_name_casing",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Casing\\ClassReferenceNameCasingFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Casing/ClassReferenceNameCasingFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Casing/ClassReferenceNameCasingFixer.php#L31-L166",
+                    "path": "src/Fixer/Casing/ClassReferenceNameCasingFixer.php",
+                    "start_line": 31,
+                    "end_line": 166
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Casing/ClassReferenceNameCasingFixer.php#L31-L166",
+                    "path": "src/Fixer/Casing/ClassReferenceNameCasingFixer.php",
+                    "start_line": 31,
+                    "end_line": 166
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "combine_consecutive_issets",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\LanguageConstruct\\CombineConsecutiveIssetsFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/CombineConsecutiveIssetsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/CombineConsecutiveIssetsFixer.php#L27-L166",
+                    "path": "src/Fixer/LanguageConstruct/CombineConsecutiveIssetsFixer.php",
+                    "start_line": 27,
+                    "end_line": 166
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/CombineConsecutiveIssetsFixer.php#L27-L166",
+                    "path": "src/Fixer/LanguageConstruct/CombineConsecutiveIssetsFixer.php",
+                    "start_line": 27,
+                    "end_line": 166
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "combine_consecutive_unsets",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\LanguageConstruct\\CombineConsecutiveUnsetsFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/CombineConsecutiveUnsetsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/CombineConsecutiveUnsetsFixer.php#L27-L189",
+                    "path": "src/Fixer/LanguageConstruct/CombineConsecutiveUnsetsFixer.php",
+                    "start_line": 27,
+                    "end_line": 189
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/CombineConsecutiveUnsetsFixer.php#L27-L189",
+                    "path": "src/Fixer/LanguageConstruct/CombineConsecutiveUnsetsFixer.php",
+                    "start_line": 27,
+                    "end_line": 189
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "combine_nested_dirname",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\FunctionNotation\\CombineNestedDirnameFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/CombineNestedDirnameFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/CombineNestedDirnameFixer.php#L30-L226",
+                    "path": "src/Fixer/FunctionNotation/CombineNestedDirnameFixer.php",
+                    "start_line": 30,
+                    "end_line": 226
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/CombineNestedDirnameFixer.php#L30-L226",
+                    "path": "src/Fixer/FunctionNotation/CombineNestedDirnameFixer.php",
+                    "start_line": 30,
+                    "end_line": 226
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "dir_constant",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\LanguageConstruct\\DirConstantFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/DirConstantFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/DirConstantFixer.php#L29-L131",
+                    "path": "src/Fixer/LanguageConstruct/DirConstantFixer.php",
+                    "start_line": 29,
+                    "end_line": 131
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/DirConstantFixer.php#L29-L131",
+                    "path": "src/Fixer/LanguageConstruct/DirConstantFixer.php",
+                    "start_line": 29,
+                    "end_line": 131
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "echo_tag_syntax",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "format": "long",
+                    "long_function": "echo",
+                    "shorten_simple_statements_only": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpTag\\EchoTagSyntaxFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpTag/EchoTagSyntaxFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpTag/EchoTagSyntaxFixer.php#L47-L277",
+                    "path": "src/Fixer/PhpTag/EchoTagSyntaxFixer.php",
+                    "start_line": 47,
+                    "end_line": 277
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpTag/EchoTagSyntaxFixer.php#L47-L277",
+                    "path": "src/Fixer/PhpTag/EchoTagSyntaxFixer.php",
+                    "start_line": 47,
+                    "end_line": 277
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "empty_loop_body",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "style": "semicolon"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\EmptyLoopBodyFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/EmptyLoopBodyFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/EmptyLoopBodyFixer.php#L42-L142",
+                    "path": "src/Fixer/ControlStructure/EmptyLoopBodyFixer.php",
+                    "start_line": 42,
+                    "end_line": 142
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/EmptyLoopBodyFixer.php#L42-L142",
+                    "path": "src/Fixer/ControlStructure/EmptyLoopBodyFixer.php",
+                    "start_line": 42,
+                    "end_line": 142
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "empty_loop_condition",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "style": "while"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\EmptyLoopConditionFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/EmptyLoopConditionFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/EmptyLoopConditionFixer.php#L41-L205",
+                    "path": "src/Fixer/ControlStructure/EmptyLoopConditionFixer.php",
+                    "start_line": 41,
+                    "end_line": 205
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/EmptyLoopConditionFixer.php#L41-L205",
+                    "path": "src/Fixer/ControlStructure/EmptyLoopConditionFixer.php",
+                    "start_line": 41,
+                    "end_line": 205
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "ereg_to_preg",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Alias\\EregToPregFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/EregToPregFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/EregToPregFixer.php#L32-L195",
+                    "path": "src/Fixer/Alias/EregToPregFixer.php",
+                    "start_line": 32,
+                    "end_line": 195
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/EregToPregFixer.php#L32-L195",
+                    "path": "src/Fixer/Alias/EregToPregFixer.php",
+                    "start_line": 32,
+                    "end_line": 195
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "error_suppression",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "mute_deprecation_error": true,
+                    "noise_remaining_usages": false,
+                    "noise_remaining_usages_exclude": []
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\LanguageConstruct\\ErrorSuppressionFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/ErrorSuppressionFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/ErrorSuppressionFixer.php#L49-L189",
+                    "path": "src/Fixer/LanguageConstruct/ErrorSuppressionFixer.php",
+                    "start_line": 49,
+                    "end_line": 189
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/ErrorSuppressionFixer.php#L49-L189",
+                    "path": "src/Fixer/LanguageConstruct/ErrorSuppressionFixer.php",
+                    "start_line": 49,
+                    "end_line": 189
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "explicit_indirect_variable",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\LanguageConstruct\\ExplicitIndirectVariableFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/ExplicitIndirectVariableFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/ExplicitIndirectVariableFixer.php#L30-L84",
+                    "path": "src/Fixer/LanguageConstruct/ExplicitIndirectVariableFixer.php",
+                    "start_line": 30,
+                    "end_line": 84
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/ExplicitIndirectVariableFixer.php#L30-L84",
+                    "path": "src/Fixer/LanguageConstruct/ExplicitIndirectVariableFixer.php",
+                    "start_line": 30,
+                    "end_line": 84
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "explicit_string_variable",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\StringNotation\\ExplicitStringVariableFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/StringNotation/ExplicitStringVariableFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/ExplicitStringVariableFixer.php#L30-L168",
+                    "path": "src/Fixer/StringNotation/ExplicitStringVariableFixer.php",
+                    "start_line": 30,
+                    "end_line": 168
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/ExplicitStringVariableFixer.php#L30-L168",
+                    "path": "src/Fixer/StringNotation/ExplicitStringVariableFixer.php",
+                    "start_line": 30,
+                    "end_line": 168
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "fopen_flag_order",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\FunctionNotation\\FopenFlagOrderFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/FopenFlagOrderFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/FopenFlagOrderFixer.php#L28-L126",
+                    "path": "src/Fixer/FunctionNotation/FopenFlagOrderFixer.php",
+                    "start_line": 28,
+                    "end_line": 126
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/FopenFlagOrderFixer.php#L28-L126",
+                    "path": "src/Fixer/FunctionNotation/FopenFlagOrderFixer.php",
+                    "start_line": 28,
+                    "end_line": 126
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "fopen_flags",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "b_mode": false
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\FunctionNotation\\FopenFlagsFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/FopenFlagsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/FopenFlagsFixer.php#L41-L123",
+                    "path": "src/Fixer/FunctionNotation/FopenFlagsFixer.php",
+                    "start_line": 41,
+                    "end_line": 123
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/FopenFlagsFixer.php#L41-L123",
+                    "path": "src/Fixer/FunctionNotation/FopenFlagsFixer.php",
+                    "start_line": 41,
+                    "end_line": 123
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "fully_qualified_strict_types",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "import_symbols": true,
+                    "leading_backslash_in_global_namespace": false,
+                    "phpdoc_tags": [
+                        "param",
+                        "phpstan-param",
+                        "phpstan-property",
+                        "phpstan-property-read",
+                        "phpstan-property-write",
+                        "phpstan-return",
+                        "phpstan-var",
+                        "property",
+                        "property-read",
+                        "property-write",
+                        "psalm-param",
+                        "psalm-property",
+                        "psalm-property-read",
+                        "psalm-property-write",
+                        "psalm-return",
+                        "psalm-var",
+                        "return",
+                        "see",
+                        "throws",
+                        "var",
+                        "extends",
+                        "implements",
+                        "use",
+                        "phpstan-extends",
+                        "phpstan-implements",
+                        "phpstan-use",
+                        "psalm-extends",
+                        "psalm-implements",
+                        "psalm-use",
+                        "mixin",
+                        "param-out",
+                        "param-closure-this",
+                        "phpstan-param-out",
+                        "phpstan-assert",
+                        "phpstan-assert-if-true",
+                        "phpstan-assert-if-false",
+                        "phpstan-self-out",
+                        "phpstan-this-out",
+                        "phpstan-require-extends",
+                        "phpstan-require-implements"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "import_symbols": true,
+                    "leading_backslash_in_global_namespace": false,
+                    "phpdoc_tags": [
+                        "param",
+                        "phpstan-param",
+                        "phpstan-property",
+                        "phpstan-property-read",
+                        "phpstan-property-write",
+                        "phpstan-return",
+                        "phpstan-var",
+                        "property",
+                        "property-read",
+                        "property-write",
+                        "psalm-param",
+                        "psalm-property",
+                        "psalm-property-read",
+                        "psalm-property-write",
+                        "psalm-return",
+                        "psalm-var",
+                        "return",
+                        "see",
+                        "throws",
+                        "var"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Import\\FullyQualifiedStrictTypesFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Import/FullyQualifiedStrictTypesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Import/FullyQualifiedStrictTypesFixer.php#L68-L1029",
+                    "path": "src/Fixer/Import/FullyQualifiedStrictTypesFixer.php",
+                    "start_line": 68,
+                    "end_line": 1029
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Import/FullyQualifiedStrictTypesFixer.php#L68-L1029",
+                    "path": "src/Fixer/Import/FullyQualifiedStrictTypesFixer.php",
+                    "start_line": 68,
+                    "end_line": 1029
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L59-L103",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 59,
+                    "end_line": 103
+                }
+            }
+        },
+        {
+            "rule": "function_to_constant",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "functions": [
+                        "get_called_class",
+                        "get_class",
+                        "get_class_this",
+                        "php_sapi_name",
+                        "phpversion",
+                        "pi"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\LanguageConstruct\\FunctionToConstantFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/FunctionToConstantFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/FunctionToConstantFixer.php#L44-L314",
+                    "path": "src/Fixer/LanguageConstruct/FunctionToConstantFixer.php",
+                    "start_line": 44,
+                    "end_line": 314
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/FunctionToConstantFixer.php#L44-L314",
+                    "path": "src/Fixer/LanguageConstruct/FunctionToConstantFixer.php",
+                    "start_line": 44,
+                    "end_line": 314
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "general_phpdoc_tag_rename",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "case_sensitive": false,
+                    "fix_annotation": true,
+                    "fix_inline": true,
+                    "replacements": []
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "case_sensitive": false,
+                    "fix_annotation": true,
+                    "fix_inline": true,
+                    "replacements": {
+                        "inheritdocs": "inheritDoc"
+                    }
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\GeneralPhpdocTagRenameFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/GeneralPhpdocTagRenameFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/GeneralPhpdocTagRenameFixer.php#L50-L216",
+                    "path": "src/Fixer/Phpdoc/GeneralPhpdocTagRenameFixer.php",
+                    "start_line": 50,
+                    "end_line": 216
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/GeneralPhpdocTagRenameFixer.php#L50-L216",
+                    "path": "src/Fixer/Phpdoc/GeneralPhpdocTagRenameFixer.php",
+                    "start_line": 50,
+                    "end_line": 216
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L105",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 105,
+                    "end_line": 105
+                }
+            }
+        },
+        {
+            "rule": "get_class_to_class_keyword",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\LanguageConstruct\\GetClassToClassKeywordFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/GetClassToClassKeywordFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/GetClassToClassKeywordFixer.php#L32-L160",
+                    "path": "src/Fixer/LanguageConstruct/GetClassToClassKeywordFixer.php",
+                    "start_line": 32,
+                    "end_line": 160
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/GetClassToClassKeywordFixer.php#L32-L160",
+                    "path": "src/Fixer/LanguageConstruct/GetClassToClassKeywordFixer.php",
+                    "start_line": 32,
+                    "end_line": 160
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "global_namespace_import",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "import_classes": false,
+                    "import_constants": false,
+                    "import_functions": false
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Import\\GlobalNamespaceImportFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Import/GlobalNamespaceImportFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Import/GlobalNamespaceImportFixer.php#L58-L733",
+                    "path": "src/Fixer/Import/GlobalNamespaceImportFixer.php",
+                    "start_line": 58,
+                    "end_line": 733
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Import/GlobalNamespaceImportFixer.php#L58-L733",
+                    "path": "src/Fixer/Import/GlobalNamespaceImportFixer.php",
+                    "start_line": 58,
+                    "end_line": 733
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "implode_call",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\FunctionNotation\\ImplodeCallFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/ImplodeCallFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/ImplodeCallFixer.php#L31-L141",
+                    "path": "src/Fixer/FunctionNotation/ImplodeCallFixer.php",
+                    "start_line": 31,
+                    "end_line": 141
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/ImplodeCallFixer.php#L31-L141",
+                    "path": "src/Fixer/FunctionNotation/ImplodeCallFixer.php",
+                    "start_line": 31,
+                    "end_line": 141
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "increment_style",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "style": "post"
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "style": "pre"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\IncrementStyleFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/IncrementStyleFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/IncrementStyleFixer.php#L45-L182",
+                    "path": "src/Fixer/Operator/IncrementStyleFixer.php",
+                    "start_line": 45,
+                    "end_line": 182
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/IncrementStyleFixer.php#L45-L182",
+                    "path": "src/Fixer/Operator/IncrementStyleFixer.php",
+                    "start_line": 45,
+                    "end_line": 182
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L108",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 108,
+                    "end_line": 108
+                }
+            }
+        },
+        {
+            "rule": "is_null",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\LanguageConstruct\\IsNullFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/IsNullFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/IsNullFixer.php#L30-L170",
+                    "path": "src/Fixer/LanguageConstruct/IsNullFixer.php",
+                    "start_line": 30,
+                    "end_line": 170
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/LanguageConstruct/IsNullFixer.php#L30-L170",
+                    "path": "src/Fixer/LanguageConstruct/IsNullFixer.php",
+                    "start_line": 30,
+                    "end_line": 170
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "logical_operators",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\LogicalOperatorsFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/LogicalOperatorsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/LogicalOperatorsFixer.php#L29-L71",
+                    "path": "src/Fixer/Operator/LogicalOperatorsFixer.php",
+                    "start_line": 29,
+                    "end_line": 71
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/LogicalOperatorsFixer.php#L29-L71",
+                    "path": "src/Fixer/Operator/LogicalOperatorsFixer.php",
+                    "start_line": 29,
+                    "end_line": 71
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "long_to_shorthand_operator",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\LongToShorthandOperatorFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/LongToShorthandOperatorFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/LongToShorthandOperatorFixer.php#L31-L141",
+                    "path": "src/Fixer/Operator/LongToShorthandOperatorFixer.php",
+                    "start_line": 31,
+                    "end_line": 141
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/LongToShorthandOperatorFixer.php#L31-L141",
+                    "path": "src/Fixer/Operator/LongToShorthandOperatorFixer.php",
+                    "start_line": 31,
+                    "end_line": 141
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "method_argument_space",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "after_heredoc": false,
+                    "attribute_placement": "standalone",
+                    "keep_multiple_spaces_after_comma": false,
+                    "on_multiline": "ignore"
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "after_heredoc": true,
+                    "attribute_placement": "standalone",
+                    "keep_multiple_spaces_after_comma": false,
+                    "on_multiline": "ensure_fully_multiline"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\FunctionNotation\\MethodArgumentSpaceFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/MethodArgumentSpaceFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/MethodArgumentSpaceFixer.php#L53-L513",
+                    "path": "src/Fixer/FunctionNotation/MethodArgumentSpaceFixer.php",
+                    "start_line": 53,
+                    "end_line": 513
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/MethodArgumentSpaceFixer.php#L53-L513",
+                    "path": "src/Fixer/FunctionNotation/MethodArgumentSpaceFixer.php",
+                    "start_line": 53,
+                    "end_line": 513
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L120-L122",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 120,
+                    "end_line": 122
+                }
+            }
+        },
+        {
+            "rule": "modern_serialization_methods",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\ModernSerializationMethodsFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/ModernSerializationMethodsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ModernSerializationMethodsFixer.php#L31-L103",
+                    "path": "src/Fixer/ClassNotation/ModernSerializationMethodsFixer.php",
+                    "start_line": 31,
+                    "end_line": 103
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ModernSerializationMethodsFixer.php#L31-L103",
+                    "path": "src/Fixer/ClassNotation/ModernSerializationMethodsFixer.php",
+                    "start_line": 31,
+                    "end_line": 103
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "modernize_strpos",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "modernize_stripos": false
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Alias\\ModernizeStrposFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/ModernizeStrposFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/ModernizeStrposFixer.php#L46-L335",
+                    "path": "src/Fixer/Alias/ModernizeStrposFixer.php",
+                    "start_line": 46,
+                    "end_line": 335
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/ModernizeStrposFixer.php#L46-L335",
+                    "path": "src/Fixer/Alias/ModernizeStrposFixer.php",
+                    "start_line": 46,
+                    "end_line": 335
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "modernize_types_casting",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\CastNotation\\ModernizeTypesCastingFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/CastNotation/ModernizeTypesCastingFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/CastNotation/ModernizeTypesCastingFixer.php#L30-L165",
+                    "path": "src/Fixer/CastNotation/ModernizeTypesCastingFixer.php",
+                    "start_line": 30,
+                    "end_line": 165
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/CastNotation/ModernizeTypesCastingFixer.php#L30-L165",
+                    "path": "src/Fixer/CastNotation/ModernizeTypesCastingFixer.php",
+                    "start_line": 30,
+                    "end_line": 165
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "modifier_keywords",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "elements": [
+                        "method",
+                        "property"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "elements": [
+                        "const",
+                        "method",
+                        "property"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\ModifierKeywordsFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/ModifierKeywordsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ModifierKeywordsFixer.php#L51-L321",
+                    "path": "src/Fixer/ClassNotation/ModifierKeywordsFixer.php",
+                    "start_line": 51,
+                    "end_line": 321
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ModifierKeywordsFixer.php#L51-L321",
+                    "path": "src/Fixer/ClassNotation/ModifierKeywordsFixer.php",
+                    "start_line": 51,
+                    "end_line": 321
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L257-L259",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 257,
+                    "end_line": 259
+                }
+            }
+        },
+        {
+            "rule": "multiline_comment_opening_closing",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Comment\\MultilineCommentOpeningClosingFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/MultilineCommentOpeningClosingFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Comment/MultilineCommentOpeningClosingFixer.php#L30-L91",
+                    "path": "src/Fixer/Comment/MultilineCommentOpeningClosingFixer.php",
+                    "start_line": 30,
+                    "end_line": 91
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Comment/MultilineCommentOpeningClosingFixer.php#L30-L91",
+                    "path": "src/Fixer/Comment/MultilineCommentOpeningClosingFixer.php",
+                    "start_line": 30,
+                    "end_line": 91
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "multiline_whitespace_before_semicolons",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "strategy": "no_multi_line"
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "strategy": "new_line_for_chained_calls"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Semicolon\\MultilineWhitespaceBeforeSemicolonsFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Semicolon/MultilineWhitespaceBeforeSemicolonsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Semicolon/MultilineWhitespaceBeforeSemicolonsFixer.php#L46-L257",
+                    "path": "src/Fixer/Semicolon/MultilineWhitespaceBeforeSemicolonsFixer.php",
+                    "start_line": 46,
+                    "end_line": 257
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Semicolon/MultilineWhitespaceBeforeSemicolonsFixer.php#L46-L257",
+                    "path": "src/Fixer/Semicolon/MultilineWhitespaceBeforeSemicolonsFixer.php",
+                    "start_line": 46,
+                    "end_line": 257
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L124-L126",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 124,
+                    "end_line": 126
+                }
+            }
+        },
+        {
+            "rule": "native_constant_invocation",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "exclude": [
+                        "null",
+                        "false",
+                        "true"
+                    ],
+                    "fix_built_in": true,
+                    "include": [],
+                    "scope": "all",
+                    "strict": false
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ConstantNotation\\NativeConstantInvocationFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ConstantNotation/NativeConstantInvocationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ConstantNotation/NativeConstantInvocationFixer.php#L54-L308",
+                    "path": "src/Fixer/ConstantNotation/NativeConstantInvocationFixer.php",
+                    "start_line": 54,
+                    "end_line": 308
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ConstantNotation/NativeConstantInvocationFixer.php#L54-L308",
+                    "path": "src/Fixer/ConstantNotation/NativeConstantInvocationFixer.php",
+                    "start_line": 54,
+                    "end_line": 308
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "native_function_invocation",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "exclude": [],
+                    "include": [
+                        "@compiler_optimized"
+                    ],
+                    "scope": "namespaced",
+                    "strict": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\FunctionNotation\\NativeFunctionInvocationFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/NativeFunctionInvocationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/NativeFunctionInvocationFixer.php#L52-L437",
+                    "path": "src/Fixer/FunctionNotation/NativeFunctionInvocationFixer.php",
+                    "start_line": 52,
+                    "end_line": 437
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/NativeFunctionInvocationFixer.php#L52-L437",
+                    "path": "src/Fixer/FunctionNotation/NativeFunctionInvocationFixer.php",
+                    "start_line": 52,
+                    "end_line": 437
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "new_with_parentheses",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "anonymous_class": false,
+                    "named_class": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "anonymous_class": false,
+                    "named_class": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\NewWithParenthesesFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/NewWithParenthesesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/NewWithParenthesesFixer.php#L48-L224",
+                    "path": "src/Fixer/Operator/NewWithParenthesesFixer.php",
+                    "start_line": 48,
+                    "end_line": 224
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/NewWithParenthesesFixer.php#L48-L224",
+                    "path": "src/Fixer/Operator/NewWithParenthesesFixer.php",
+                    "start_line": 48,
+                    "end_line": 224
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L129-L132",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 129,
+                    "end_line": 132
+                }
+            }
+        },
+        {
+            "rule": "no_break_comment",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "comment_text": "no break"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\NoBreakCommentFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoBreakCommentFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoBreakCommentFixer.php#L49-L363",
+                    "path": "src/Fixer/ControlStructure/NoBreakCommentFixer.php",
+                    "start_line": 49,
+                    "end_line": 363
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoBreakCommentFixer.php#L49-L363",
+                    "path": "src/Fixer/ControlStructure/NoBreakCommentFixer.php",
+                    "start_line": 49,
+                    "end_line": 363
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_empty_comment",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Comment\\NoEmptyCommentFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/NoEmptyCommentFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Comment/NoEmptyCommentFixer.php#L27-L163",
+                    "path": "src/Fixer/Comment/NoEmptyCommentFixer.php",
+                    "start_line": 27,
+                    "end_line": 163
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Comment/NoEmptyCommentFixer.php#L27-L163",
+                    "path": "src/Fixer/Comment/NoEmptyCommentFixer.php",
+                    "start_line": 27,
+                    "end_line": 163
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_extra_blank_lines",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "tokens": [
+                        "extra",
+                        "throw",
+                        "use"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "tokens": [
+                        "attribute",
+                        "break",
+                        "case",
+                        "continue",
+                        "curly_brace_block",
+                        "default",
+                        "extra",
+                        "parenthesis_brace_block",
+                        "return",
+                        "square_brace_block",
+                        "switch",
+                        "throw",
+                        "use"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Whitespace\\NoExtraBlankLinesFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Whitespace/NoExtraBlankLinesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Whitespace/NoExtraBlankLinesFixer.php#L51-L529",
+                    "path": "src/Fixer/Whitespace/NoExtraBlankLinesFixer.php",
+                    "start_line": 51,
+                    "end_line": 529
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Whitespace/NoExtraBlankLinesFixer.php#L51-L529",
+                    "path": "src/Fixer/Whitespace/NoExtraBlankLinesFixer.php",
+                    "start_line": 51,
+                    "end_line": 529
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L142-L148",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 142,
+                    "end_line": 148
+                }
+            }
+        },
+        {
+            "rule": "no_homoglyph_names",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Naming\\NoHomoglyphNamesFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Naming/NoHomoglyphNamesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Naming/NoHomoglyphNamesFixer.php#L31-L232",
+                    "path": "src/Fixer/Naming/NoHomoglyphNamesFixer.php",
+                    "start_line": 31,
+                    "end_line": 232
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Naming/NoHomoglyphNamesFixer.php#L31-L232",
+                    "path": "src/Fixer/Naming/NoHomoglyphNamesFixer.php",
+                    "start_line": 31,
+                    "end_line": 232
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_null_property_initialization",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\NoNullPropertyInitializationFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/NoNullPropertyInitializationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/NoNullPropertyInitializationFixer.php#L28-L149",
+                    "path": "src/Fixer/ClassNotation/NoNullPropertyInitializationFixer.php",
+                    "start_line": 28,
+                    "end_line": 149
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/NoNullPropertyInitializationFixer.php#L28-L149",
+                    "path": "src/Fixer/ClassNotation/NoNullPropertyInitializationFixer.php",
+                    "start_line": 28,
+                    "end_line": 149
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_php4_constructor",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\NoPhp4ConstructorFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/NoPhp4ConstructorFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/NoPhp4ConstructorFixer.php#L32-L416",
+                    "path": "src/Fixer/ClassNotation/NoPhp4ConstructorFixer.php",
+                    "start_line": 32,
+                    "end_line": 416
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/NoPhp4ConstructorFixer.php#L32-L416",
+                    "path": "src/Fixer/ClassNotation/NoPhp4ConstructorFixer.php",
+                    "start_line": 32,
+                    "end_line": 416
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_superfluous_elseif",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\NoSuperfluousElseifFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoSuperfluousElseifFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoSuperfluousElseifFixer.php#L28-L103",
+                    "path": "src/Fixer/ControlStructure/NoSuperfluousElseifFixer.php",
+                    "start_line": 28,
+                    "end_line": 103
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoSuperfluousElseifFixer.php#L28-L103",
+                    "path": "src/Fixer/ControlStructure/NoSuperfluousElseifFixer.php",
+                    "start_line": 28,
+                    "end_line": 103
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_superfluous_phpdoc_tags",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "allow_hidden_params": false,
+                    "allow_mixed": true,
+                    "allow_unused_params": true,
+                    "remove_inheritdoc": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "allow_hidden_params": true,
+                    "allow_mixed": true,
+                    "allow_unused_params": false,
+                    "remove_inheritdoc": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\NoSuperfluousPhpdocTagsFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/NoSuperfluousPhpdocTagsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/NoSuperfluousPhpdocTagsFixer.php#L68-L764",
+                    "path": "src/Fixer/Phpdoc/NoSuperfluousPhpdocTagsFixer.php",
+                    "start_line": 68,
+                    "end_line": 764
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/NoSuperfluousPhpdocTagsFixer.php#L68-L764",
+                    "path": "src/Fixer/Phpdoc/NoSuperfluousPhpdocTagsFixer.php",
+                    "start_line": 68,
+                    "end_line": 764
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L163-L166",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 163,
+                    "end_line": 166
+                }
+            }
+        },
+        {
+            "rule": "no_unneeded_braces",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "namespaces": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "namespaces": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\NoUnneededBracesFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoUnneededBracesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoUnneededBracesFixer.php#L43-L203",
+                    "path": "src/Fixer/ControlStructure/NoUnneededBracesFixer.php",
+                    "start_line": 43,
+                    "end_line": 203
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoUnneededBracesFixer.php#L43-L203",
+                    "path": "src/Fixer/ControlStructure/NoUnneededBracesFixer.php",
+                    "start_line": 43,
+                    "end_line": 203
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L173",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 173,
+                    "end_line": 173
+                }
+            }
+        },
+        {
+            "rule": "no_unneeded_control_parentheses",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "statements": [
+                        "break",
+                        "clone",
+                        "continue",
+                        "echo_print",
+                        "return",
+                        "switch_case",
+                        "yield"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "statements": [
+                        "break",
+                        "clone",
+                        "continue",
+                        "echo_print",
+                        "negative_instanceof",
+                        "others",
+                        "return",
+                        "switch_case",
+                        "yield",
+                        "yield_from"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\NoUnneededControlParenthesesFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoUnneededControlParenthesesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoUnneededControlParenthesesFixer.php#L51-L744",
+                    "path": "src/Fixer/ControlStructure/NoUnneededControlParenthesesFixer.php",
+                    "start_line": 51,
+                    "end_line": 744
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoUnneededControlParenthesesFixer.php#L51-L744",
+                    "path": "src/Fixer/ControlStructure/NoUnneededControlParenthesesFixer.php",
+                    "start_line": 51,
+                    "end_line": 744
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L170-L172",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 170,
+                    "end_line": 172
+                }
+            }
+        },
+        {
+            "rule": "no_unneeded_final_method",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "private_methods": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\NoUnneededFinalMethodFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/NoUnneededFinalMethodFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/NoUnneededFinalMethodFixer.php#L45-L219",
+                    "path": "src/Fixer/ClassNotation/NoUnneededFinalMethodFixer.php",
+                    "start_line": 45,
+                    "end_line": 219
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/NoUnneededFinalMethodFixer.php#L45-L219",
+                    "path": "src/Fixer/ClassNotation/NoUnneededFinalMethodFixer.php",
+                    "start_line": 45,
+                    "end_line": 219
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_useless_concat_operator",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "juggle_simple_strings": false
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\NoUselessConcatOperatorFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/NoUselessConcatOperatorFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/NoUselessConcatOperatorFixer.php#L47-L377",
+                    "path": "src/Fixer/Operator/NoUselessConcatOperatorFixer.php",
+                    "start_line": 47,
+                    "end_line": 377
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/NoUselessConcatOperatorFixer.php#L47-L377",
+                    "path": "src/Fixer/Operator/NoUselessConcatOperatorFixer.php",
+                    "start_line": 47,
+                    "end_line": 377
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_useless_else",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\NoUselessElseFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoUselessElseFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoUselessElseFixer.php#L27-L154",
+                    "path": "src/Fixer/ControlStructure/NoUselessElseFixer.php",
+                    "start_line": 27,
+                    "end_line": 154
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/NoUselessElseFixer.php#L27-L154",
+                    "path": "src/Fixer/ControlStructure/NoUselessElseFixer.php",
+                    "start_line": 27,
+                    "end_line": 154
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_useless_nullsafe_operator",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\NoUselessNullsafeOperatorFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/NoUselessNullsafeOperatorFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/NoUselessNullsafeOperatorFixer.php#L28-L78",
+                    "path": "src/Fixer/Operator/NoUselessNullsafeOperatorFixer.php",
+                    "start_line": 28,
+                    "end_line": 78
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/NoUselessNullsafeOperatorFixer.php#L28-L78",
+                    "path": "src/Fixer/Operator/NoUselessNullsafeOperatorFixer.php",
+                    "start_line": 28,
+                    "end_line": 78
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_useless_sprintf",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\FunctionNotation\\NoUselessSprintfFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/NoUselessSprintfFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/NoUselessSprintfFixer.php#L28-L112",
+                    "path": "src/Fixer/FunctionNotation/NoUselessSprintfFixer.php",
+                    "start_line": 28,
+                    "end_line": 112
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/NoUselessSprintfFixer.php#L28-L112",
+                    "path": "src/Fixer/FunctionNotation/NoUselessSprintfFixer.php",
+                    "start_line": 28,
+                    "end_line": 112
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "no_whitespace_before_comma_in_array",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "after_heredoc": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "after_heredoc": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ArrayNotation\\NoWhitespaceBeforeCommaInArrayFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ArrayNotation/NoWhitespaceBeforeCommaInArrayFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ArrayNotation/NoWhitespaceBeforeCommaInArrayFixer.php#L44-L157",
+                    "path": "src/Fixer/ArrayNotation/NoWhitespaceBeforeCommaInArrayFixer.php",
+                    "start_line": 44,
+                    "end_line": 157
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ArrayNotation/NoWhitespaceBeforeCommaInArrayFixer.php#L44-L157",
+                    "path": "src/Fixer/ArrayNotation/NoWhitespaceBeforeCommaInArrayFixer.php",
+                    "start_line": 44,
+                    "end_line": 157
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L179",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 179,
+                    "end_line": 179
+                }
+            }
+        },
+        {
+            "rule": "non_printable_character",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "use_escape_sequences_in_strings": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Basic\\NonPrintableCharacterFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/NonPrintableCharacterFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Basic/NonPrintableCharacterFixer.php#L46-L194",
+                    "path": "src/Fixer/Basic/NonPrintableCharacterFixer.php",
+                    "start_line": 46,
+                    "end_line": 194
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Basic/NonPrintableCharacterFixer.php#L46-L194",
+                    "path": "src/Fixer/Basic/NonPrintableCharacterFixer.php",
+                    "start_line": 46,
+                    "end_line": 194
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "operator_linebreak",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "only_booleans": false,
+                    "position": "beginning"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\OperatorLinebreakFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/OperatorLinebreakFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/OperatorLinebreakFixer.php#L53-L315",
+                    "path": "src/Fixer/Operator/OperatorLinebreakFixer.php",
+                    "start_line": 53,
+                    "end_line": 315
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/OperatorLinebreakFixer.php#L53-L315",
+                    "path": "src/Fixer/Operator/OperatorLinebreakFixer.php",
+                    "start_line": 53,
+                    "end_line": 315
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "ordered_class_elements",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "case_sensitive": false,
+                    "order": [
+                        "use_trait",
+                        "case",
+                        "constant_public",
+                        "constant_protected",
+                        "constant_private",
+                        "property_public",
+                        "property_protected",
+                        "property_private",
+                        "construct",
+                        "destruct",
+                        "magic",
+                        "phpunit",
+                        "method_public",
+                        "method_protected",
+                        "method_private"
+                    ],
+                    "sort_algorithm": "none"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\OrderedClassElementsFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/OrderedClassElementsFixer.php#L60-L633",
+                    "path": "src/Fixer/ClassNotation/OrderedClassElementsFixer.php",
+                    "start_line": 60,
+                    "end_line": 633
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/OrderedClassElementsFixer.php#L60-L633",
+                    "path": "src/Fixer/ClassNotation/OrderedClassElementsFixer.php",
+                    "start_line": 60,
+                    "end_line": 633
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "ordered_imports",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "case_sensitive": false,
+                    "imports_order": [
+                        "const",
+                        "class",
+                        "function"
+                    ],
+                    "sort_algorithm": "alpha"
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "case_sensitive": false,
+                    "imports_order": [
+                        "class",
+                        "function",
+                        "const"
+                    ],
+                    "sort_algorithm": "alpha"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Import\\OrderedImportsFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Import/OrderedImportsFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Import/OrderedImportsFixer.php#L67-L650",
+                    "path": "src/Fixer/Import/OrderedImportsFixer.php",
+                    "start_line": 67,
+                    "end_line": 650
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Import/OrderedImportsFixer.php#L67-L650",
+                    "path": "src/Fixer/Import/OrderedImportsFixer.php",
+                    "start_line": 67,
+                    "end_line": 650
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L186",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 186,
+                    "end_line": 186
+                }
+            }
+        },
+        {
+            "rule": "ordered_types",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "case_sensitive": false,
+                    "null_adjustment": "always_last",
+                    "sort_algorithm": "alpha"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\OrderedTypesFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedTypesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/OrderedTypesFixer.php#L56-L465",
+                    "path": "src/Fixer/ClassNotation/OrderedTypesFixer.php",
+                    "start_line": 56,
+                    "end_line": 465
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/OrderedTypesFixer.php#L56-L465",
+                    "path": "src/Fixer/ClassNotation/OrderedTypesFixer.php",
+                    "start_line": 56,
+                    "end_line": 465
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "php_unit_construct",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "assertions": [
+                        "assertEquals",
+                        "assertNotEquals",
+                        "assertNotSame",
+                        "assertSame"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitConstructFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitConstructFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitConstructFixer.php#L45-L213",
+                    "path": "src/Fixer/PhpUnit/PhpUnitConstructFixer.php",
+                    "start_line": 45,
+                    "end_line": 213
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitConstructFixer.php#L45-L213",
+                    "path": "src/Fixer/PhpUnit/PhpUnitConstructFixer.php",
+                    "start_line": 45,
+                    "end_line": 213
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "php_unit_data_provider_method_order",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "placement": "after"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitDataProviderMethodOrderFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitDataProviderMethodOrderFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitDataProviderMethodOrderFixer.php#L44-L295",
+                    "path": "src/Fixer/PhpUnit/PhpUnitDataProviderMethodOrderFixer.php",
+                    "start_line": 44,
+                    "end_line": 295
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitDataProviderMethodOrderFixer.php#L44-L295",
+                    "path": "src/Fixer/PhpUnit/PhpUnitDataProviderMethodOrderFixer.php",
+                    "start_line": 44,
+                    "end_line": 295
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "php_unit_fqcn_annotation",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitFqcnAnnotationFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitFqcnAnnotationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitFqcnAnnotationFixer.php#L30-L92",
+                    "path": "src/Fixer/PhpUnit/PhpUnitFqcnAnnotationFixer.php",
+                    "start_line": 30,
+                    "end_line": 92
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitFqcnAnnotationFixer.php#L30-L92",
+                    "path": "src/Fixer/PhpUnit/PhpUnitFqcnAnnotationFixer.php",
+                    "start_line": 30,
+                    "end_line": 92
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "php_unit_internal_class",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "types": [
+                        "normal",
+                        "final"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitInternalClassFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitInternalClassFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitInternalClassFixer.php#L45-L125",
+                    "path": "src/Fixer/PhpUnit/PhpUnitInternalClassFixer.php",
+                    "start_line": 45,
+                    "end_line": 125
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitInternalClassFixer.php#L45-L125",
+                    "path": "src/Fixer/PhpUnit/PhpUnitInternalClassFixer.php",
+                    "start_line": 45,
+                    "end_line": 125
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "php_unit_method_casing",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "case": "snake_case"
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "case": "camel_case"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitMethodCasingFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitMethodCasingFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitMethodCasingFixer.php#L50-L268",
+                    "path": "src/Fixer/PhpUnit/PhpUnitMethodCasingFixer.php",
+                    "start_line": 50,
+                    "end_line": 268
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitMethodCasingFixer.php#L50-L268",
+                    "path": "src/Fixer/PhpUnit/PhpUnitMethodCasingFixer.php",
+                    "start_line": 50,
+                    "end_line": 268
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L189",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 189,
+                    "end_line": 189
+                }
+            }
+        },
+        {
+            "rule": "php_unit_mock_short_will_return",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitMockShortWillReturnFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitMockShortWillReturnFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitMockShortWillReturnFixer.php#L32-L129",
+                    "path": "src/Fixer/PhpUnit/PhpUnitMockShortWillReturnFixer.php",
+                    "start_line": 32,
+                    "end_line": 129
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitMockShortWillReturnFixer.php#L32-L129",
+                    "path": "src/Fixer/PhpUnit/PhpUnitMockShortWillReturnFixer.php",
+                    "start_line": 32,
+                    "end_line": 129
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "php_unit_test_annotation",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "style": "prefix"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitTestAnnotationFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitTestAnnotationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitTestAnnotationFixer.php#L49-L416",
+                    "path": "src/Fixer/PhpUnit/PhpUnitTestAnnotationFixer.php",
+                    "start_line": 49,
+                    "end_line": 416
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitTestAnnotationFixer.php#L49-L416",
+                    "path": "src/Fixer/PhpUnit/PhpUnitTestAnnotationFixer.php",
+                    "start_line": 49,
+                    "end_line": 416
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "php_unit_test_class_requires_covers",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\PhpUnit\\PhpUnitTestClassRequiresCoversFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitTestClassRequiresCoversFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitTestClassRequiresCoversFixer.php#L30-L93",
+                    "path": "src/Fixer/PhpUnit/PhpUnitTestClassRequiresCoversFixer.php",
+                    "start_line": 30,
+                    "end_line": 93
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/PhpUnit/PhpUnitTestClassRequiresCoversFixer.php#L30-L93",
+                    "path": "src/Fixer/PhpUnit/PhpUnitTestClassRequiresCoversFixer.php",
+                    "start_line": 30,
+                    "end_line": 93
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_add_missing_param_annotation",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "only_untyped": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocAddMissingParamAnnotationFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocAddMissingParamAnnotationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocAddMissingParamAnnotationFixer.php#L50-L302",
+                    "path": "src/Fixer/Phpdoc/PhpdocAddMissingParamAnnotationFixer.php",
+                    "start_line": 50,
+                    "end_line": 302
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocAddMissingParamAnnotationFixer.php#L50-L302",
+                    "path": "src/Fixer/Phpdoc/PhpdocAddMissingParamAnnotationFixer.php",
+                    "start_line": 50,
+                    "end_line": 302
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_align",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "align": "left",
+                    "spacing": {
+                        "param": 2
+                    },
+                    "tags": [
+                        "method",
+                        "param",
+                        "property",
+                        "return",
+                        "throws",
+                        "type",
+                        "var"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "align": "vertical",
+                    "spacing": 1,
+                    "tags": [
+                        "method",
+                        "param",
+                        "property",
+                        "return",
+                        "throws",
+                        "type",
+                        "var"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocAlignFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocAlignFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocAlignFixer.php#L57-L509",
+                    "path": "src/Fixer/Phpdoc/PhpdocAlignFixer.php",
+                    "start_line": 57,
+                    "end_line": 509
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocAlignFixer.php#L57-L509",
+                    "path": "src/Fixer/Phpdoc/PhpdocAlignFixer.php",
+                    "start_line": 57,
+                    "end_line": 509
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L191-L196",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 191,
+                    "end_line": 196
+                }
+            }
+        },
+        {
+            "rule": "phpdoc_annotation_without_dot",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocAnnotationWithoutDotFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocAnnotationWithoutDotFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocAnnotationWithoutDotFixer.php#L31-L131",
+                    "path": "src/Fixer/Phpdoc/PhpdocAnnotationWithoutDotFixer.php",
+                    "start_line": 31,
+                    "end_line": 131
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocAnnotationWithoutDotFixer.php#L31-L131",
+                    "path": "src/Fixer/Phpdoc/PhpdocAnnotationWithoutDotFixer.php",
+                    "start_line": 31,
+                    "end_line": 131
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_no_alias_tag",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "replacements": {
+                        "const": "var",
+                        "link": "see",
+                        "property-read": "property",
+                        "property-write": "property",
+                        "type": "var"
+                    }
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocNoAliasTagFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocNoAliasTagFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocNoAliasTagFixer.php#L48-L148",
+                    "path": "src/Fixer/Phpdoc/PhpdocNoAliasTagFixer.php",
+                    "start_line": 48,
+                    "end_line": 148
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocNoAliasTagFixer.php#L48-L148",
+                    "path": "src/Fixer/Phpdoc/PhpdocNoAliasTagFixer.php",
+                    "start_line": 48,
+                    "end_line": 148
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_no_empty_return",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocNoEmptyReturnFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocNoEmptyReturnFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocNoEmptyReturnFixer.php#L31-L123",
+                    "path": "src/Fixer/Phpdoc/PhpdocNoEmptyReturnFixer.php",
+                    "start_line": 31,
+                    "end_line": 123
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocNoEmptyReturnFixer.php#L31-L123",
+                    "path": "src/Fixer/Phpdoc/PhpdocNoEmptyReturnFixer.php",
+                    "start_line": 31,
+                    "end_line": 123
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_order_by_value",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "annotations": {
+                        "covers": "covers"
+                    }
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocOrderByValueFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocOrderByValueFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocOrderByValueFixer.php#L48-L232",
+                    "path": "src/Fixer/Phpdoc/PhpdocOrderByValueFixer.php",
+                    "start_line": 48,
+                    "end_line": 232
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocOrderByValueFixer.php#L48-L232",
+                    "path": "src/Fixer/Phpdoc/PhpdocOrderByValueFixer.php",
+                    "start_line": 48,
+                    "end_line": 232
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_return_self_reference",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "replacements": {
+                        "$self": "self",
+                        "$static": "static",
+                        "@self": "self",
+                        "@static": "static",
+                        "@this": "$this",
+                        "this": "$this"
+                    }
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocReturnSelfReferenceFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocReturnSelfReferenceFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocReturnSelfReferenceFixer.php#L46-L239",
+                    "path": "src/Fixer/Phpdoc/PhpdocReturnSelfReferenceFixer.php",
+                    "start_line": 46,
+                    "end_line": 239
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocReturnSelfReferenceFixer.php#L46-L239",
+                    "path": "src/Fixer/Phpdoc/PhpdocReturnSelfReferenceFixer.php",
+                    "start_line": 46,
+                    "end_line": 239
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_scalar",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "types": [
+                        "boolean",
+                        "callback",
+                        "double",
+                        "integer",
+                        "real",
+                        "str"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "types": [
+                        "boolean",
+                        "callback",
+                        "double",
+                        "integer",
+                        "never-return",
+                        "never-returns",
+                        "no-return",
+                        "real",
+                        "str"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocScalarFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocScalarFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocScalarFixer.php#L43-L153",
+                    "path": "src/Fixer/Phpdoc/PhpdocScalarFixer.php",
+                    "start_line": 43,
+                    "end_line": 153
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocScalarFixer.php#L43-L153",
+                    "path": "src/Fixer/Phpdoc/PhpdocScalarFixer.php",
+                    "start_line": 43,
+                    "end_line": 153
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L205",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 205,
+                    "end_line": 205
+                }
+            }
+        },
+        {
+            "rule": "phpdoc_separation",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "groups": [
+                        [
+                            "deprecated",
+                            "link",
+                            "see",
+                            "since"
+                        ],
+                        [
+                            "author",
+                            "copyright",
+                            "license"
+                        ],
+                        [
+                            "category",
+                            "package",
+                            "subpackage"
+                        ],
+                        [
+                            "property",
+                            "property-read",
+                            "property-write"
+                        ],
+                        [
+                            "param",
+                            "return"
+                        ]
+                    ],
+                    "skip_unlisted_annotations": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "groups": [
+                        [
+                            "Annotation",
+                            "NamedArgumentConstructor",
+                            "Target"
+                        ],
+                        [
+                            "author",
+                            "copyright",
+                            "license"
+                        ],
+                        [
+                            "category",
+                            "package",
+                            "subpackage"
+                        ],
+                        [
+                            "property",
+                            "property-read",
+                            "property-write"
+                        ],
+                        [
+                            "deprecated",
+                            "link",
+                            "see",
+                            "since"
+                        ]
+                    ],
+                    "skip_unlisted_annotations": false
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocSeparationFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocSeparationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocSeparationFixer.php#L51-L337",
+                    "path": "src/Fixer/Phpdoc/PhpdocSeparationFixer.php",
+                    "start_line": 51,
+                    "end_line": 337
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocSeparationFixer.php#L51-L337",
+                    "path": "src/Fixer/Phpdoc/PhpdocSeparationFixer.php",
+                    "start_line": 51,
+                    "end_line": 337
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L206-L214",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 206,
+                    "end_line": 214
+                }
+            }
+        },
+        {
+            "rule": "phpdoc_summary",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocSummaryFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocSummaryFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocSummaryFixer.php#L32-L107",
+                    "path": "src/Fixer/Phpdoc/PhpdocSummaryFixer.php",
+                    "start_line": 32,
+                    "end_line": 107
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocSummaryFixer.php#L32-L107",
+                    "path": "src/Fixer/Phpdoc/PhpdocSummaryFixer.php",
+                    "start_line": 32,
+                    "end_line": 107
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L216",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 216,
+                    "end_line": 216
+                }
+            }
+        },
+        {
+            "rule": "phpdoc_to_comment",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "allow_before_return_statement": false,
+                    "ignored_tags": []
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocToCommentFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocToCommentFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocToCommentFixer.php#L49-L195",
+                    "path": "src/Fixer/Phpdoc/PhpdocToCommentFixer.php",
+                    "start_line": 49,
+                    "end_line": 195
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocToCommentFixer.php#L49-L195",
+                    "path": "src/Fixer/Phpdoc/PhpdocToCommentFixer.php",
+                    "start_line": 49,
+                    "end_line": 195
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L222",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 222,
+                    "end_line": 222
+                }
+            }
+        },
+        {
+            "rule": "phpdoc_trim_consecutive_blank_line_separation",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocTrimConsecutiveBlankLineSeparationFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocTrimConsecutiveBlankLineSeparationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocTrimConsecutiveBlankLineSeparationFixer.php#L33-L195",
+                    "path": "src/Fixer/Phpdoc/PhpdocTrimConsecutiveBlankLineSeparationFixer.php",
+                    "start_line": 33,
+                    "end_line": 195
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocTrimConsecutiveBlankLineSeparationFixer.php#L33-L195",
+                    "path": "src/Fixer/Phpdoc/PhpdocTrimConsecutiveBlankLineSeparationFixer.php",
+                    "start_line": 33,
+                    "end_line": 195
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_types_no_duplicates",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocTypesNoDuplicatesFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocTypesNoDuplicatesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocTypesNoDuplicatesFixer.php#L31-L105",
+                    "path": "src/Fixer/Phpdoc/PhpdocTypesNoDuplicatesFixer.php",
+                    "start_line": 31,
+                    "end_line": 105
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocTypesNoDuplicatesFixer.php#L31-L105",
+                    "path": "src/Fixer/Phpdoc/PhpdocTypesNoDuplicatesFixer.php",
+                    "start_line": 31,
+                    "end_line": 105
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_types_order",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "case_sensitive": false,
+                    "null_adjustment": "always_first",
+                    "sort_algorithm": "alpha"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocTypesOrderFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocTypesOrderFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocTypesOrderFixer.php#L49-L235",
+                    "path": "src/Fixer/Phpdoc/PhpdocTypesOrderFixer.php",
+                    "start_line": 49,
+                    "end_line": 235
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocTypesOrderFixer.php#L49-L235",
+                    "path": "src/Fixer/Phpdoc/PhpdocTypesOrderFixer.php",
+                    "start_line": 49,
+                    "end_line": 235
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "phpdoc_var_annotation_correct_order",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Phpdoc\\PhpdocVarAnnotationCorrectOrderFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocVarAnnotationCorrectOrderFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocVarAnnotationCorrectOrderFixer.php#L30-L89",
+                    "path": "src/Fixer/Phpdoc/PhpdocVarAnnotationCorrectOrderFixer.php",
+                    "start_line": 30,
+                    "end_line": 89
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Phpdoc/PhpdocVarAnnotationCorrectOrderFixer.php#L30-L89",
+                    "path": "src/Fixer/Phpdoc/PhpdocVarAnnotationCorrectOrderFixer.php",
+                    "start_line": 30,
+                    "end_line": 89
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "pow_to_exponentiation",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Alias\\PowToExponentiationFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/PowToExponentiationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/PowToExponentiationFixer.php#L29-L222",
+                    "path": "src/Fixer/Alias/PowToExponentiationFixer.php",
+                    "start_line": 29,
+                    "end_line": 222
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/PowToExponentiationFixer.php#L29-L222",
+                    "path": "src/Fixer/Alias/PowToExponentiationFixer.php",
+                    "start_line": 29,
+                    "end_line": 222
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "protected_to_private",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\ProtectedToPrivateFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/ProtectedToPrivateFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ProtectedToPrivateFixer.php#L32-L178",
+                    "path": "src/Fixer/ClassNotation/ProtectedToPrivateFixer.php",
+                    "start_line": 32,
+                    "end_line": 178
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/ProtectedToPrivateFixer.php#L32-L178",
+                    "path": "src/Fixer/ClassNotation/ProtectedToPrivateFixer.php",
+                    "start_line": 32,
+                    "end_line": 178
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "psr_autoloading",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "dir": null
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Basic\\PsrAutoloadingFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/PsrAutoloadingFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Basic/PsrAutoloadingFixer.php#L51-L298",
+                    "path": "src/Fixer/Basic/PsrAutoloadingFixer.php",
+                    "start_line": 51,
+                    "end_line": 298
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Basic/PsrAutoloadingFixer.php#L51-L298",
+                    "path": "src/Fixer/Basic/PsrAutoloadingFixer.php",
+                    "start_line": 51,
+                    "end_line": 298
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L226",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 226,
+                    "end_line": 226
+                }
+            }
+        },
+        {
+            "rule": "return_assignment",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ReturnNotation\\ReturnAssignmentFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ReturnNotation/ReturnAssignmentFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ReturnNotation/ReturnAssignmentFixer.php#L30-L529",
+                    "path": "src/Fixer/ReturnNotation/ReturnAssignmentFixer.php",
+                    "start_line": 30,
+                    "end_line": 529
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ReturnNotation/ReturnAssignmentFixer.php#L30-L529",
+                    "path": "src/Fixer/ReturnNotation/ReturnAssignmentFixer.php",
+                    "start_line": 30,
+                    "end_line": 529
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "self_accessor",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\SelfAccessorFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SelfAccessorFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/SelfAccessorFixer.php#L32-L204",
+                    "path": "src/Fixer/ClassNotation/SelfAccessorFixer.php",
+                    "start_line": 32,
+                    "end_line": 204
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/SelfAccessorFixer.php#L32-L204",
+                    "path": "src/Fixer/ClassNotation/SelfAccessorFixer.php",
+                    "start_line": 32,
+                    "end_line": 204
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L228",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 228,
+                    "end_line": 228
+                }
+            }
+        },
+        {
+            "rule": "semicolon_after_instruction",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Semicolon\\SemicolonAfterInstructionFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Semicolon/SemicolonAfterInstructionFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Semicolon/SemicolonAfterInstructionFixer.php#L27-L67",
+                    "path": "src/Fixer/Semicolon/SemicolonAfterInstructionFixer.php",
+                    "start_line": 27,
+                    "end_line": 67
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Semicolon/SemicolonAfterInstructionFixer.php#L27-L67",
+                    "path": "src/Fixer/Semicolon/SemicolonAfterInstructionFixer.php",
+                    "start_line": 27,
+                    "end_line": 67
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "set_type_to_cast",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Alias\\SetTypeToCastFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/SetTypeToCastFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/SetTypeToCastFixer.php#L28-L245",
+                    "path": "src/Fixer/Alias/SetTypeToCastFixer.php",
+                    "start_line": 28,
+                    "end_line": 245
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Alias/SetTypeToCastFixer.php#L28-L245",
+                    "path": "src/Fixer/Alias/SetTypeToCastFixer.php",
+                    "start_line": 28,
+                    "end_line": 245
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "simple_to_complex_string_variable",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\StringNotation\\SimpleToComplexStringVariableFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/StringNotation/SimpleToComplexStringVariableFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/SimpleToComplexStringVariableFixer.php#L30-L98",
+                    "path": "src/Fixer/StringNotation/SimpleToComplexStringVariableFixer.php",
+                    "start_line": 30,
+                    "end_line": 98
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/SimpleToComplexStringVariableFixer.php#L30-L98",
+                    "path": "src/Fixer/StringNotation/SimpleToComplexStringVariableFixer.php",
+                    "start_line": 30,
+                    "end_line": 98
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "single_line_comment_style",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "comment_types": [
+                        "hash"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "comment_types": [
+                        "asterisk",
+                        "hash"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Comment\\SingleLineCommentStyleFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/SingleLineCommentStyleFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Comment/SingleLineCommentStyleFixer.php#L45-L185",
+                    "path": "src/Fixer/Comment/SingleLineCommentStyleFixer.php",
+                    "start_line": 45,
+                    "end_line": 185
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Comment/SingleLineCommentStyleFixer.php#L45-L185",
+                    "path": "src/Fixer/Comment/SingleLineCommentStyleFixer.php",
+                    "start_line": 45,
+                    "end_line": 185
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L239-L241",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 239,
+                    "end_line": 241
+                }
+            }
+        },
+        {
+            "rule": "single_trait_insert_per_statement",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ClassNotation\\SingleTraitInsertPerStatementFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleTraitInsertPerStatementFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/SingleTraitInsertPerStatementFixer.php#L29-L121",
+                    "path": "src/Fixer/ClassNotation/SingleTraitInsertPerStatementFixer.php",
+                    "start_line": 29,
+                    "end_line": 121
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ClassNotation/SingleTraitInsertPerStatementFixer.php#L29-L121",
+                    "path": "src/Fixer/ClassNotation/SingleTraitInsertPerStatementFixer.php",
+                    "start_line": 29,
+                    "end_line": 121
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "space_after_semicolon",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "remove_in_empty_for_expressions": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "remove_in_empty_for_expressions": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Semicolon\\SpaceAfterSemicolonFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Semicolon/SpaceAfterSemicolonFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Semicolon/SpaceAfterSemicolonFixer.php#L42-L162",
+                    "path": "src/Fixer/Semicolon/SpaceAfterSemicolonFixer.php",
+                    "start_line": 42,
+                    "end_line": 162
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Semicolon/SpaceAfterSemicolonFixer.php#L42-L162",
+                    "path": "src/Fixer/Semicolon/SpaceAfterSemicolonFixer.php",
+                    "start_line": 42,
+                    "end_line": 162
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L245",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 245,
+                    "end_line": 245
+                }
+            }
+        },
+        {
+            "rule": "standardize_increment",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\StandardizeIncrementFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/StandardizeIncrementFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/StandardizeIncrementFixer.php#L30-L124",
+                    "path": "src/Fixer/Operator/StandardizeIncrementFixer.php",
+                    "start_line": 30,
+                    "end_line": 124
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/StandardizeIncrementFixer.php#L30-L124",
+                    "path": "src/Fixer/Operator/StandardizeIncrementFixer.php",
+                    "start_line": 30,
+                    "end_line": 124
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "statement_indentation",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "stick_comment_to_next_continuous_control_statement": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "stick_comment_to_next_continuous_control_statement": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Whitespace\\StatementIndentationFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Whitespace/StatementIndentationFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Whitespace/StatementIndentationFixer.php#L47-L843",
+                    "path": "src/Fixer/Whitespace/StatementIndentationFixer.php",
+                    "start_line": 47,
+                    "end_line": 843
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Whitespace/StatementIndentationFixer.php#L47-L843",
+                    "path": "src/Fixer/Whitespace/StatementIndentationFixer.php",
+                    "start_line": 47,
+                    "end_line": 843
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L248",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 248,
+                    "end_line": 248
+                }
+            }
+        },
+        {
+            "rule": "static_lambda",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\FunctionNotation\\StaticLambdaFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/StaticLambdaFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/StaticLambdaFixer.php#L29-L158",
+                    "path": "src/Fixer/FunctionNotation/StaticLambdaFixer.php",
+                    "start_line": 29,
+                    "end_line": 158
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/FunctionNotation/StaticLambdaFixer.php#L29-L158",
+                    "path": "src/Fixer/FunctionNotation/StaticLambdaFixer.php",
+                    "start_line": 29,
+                    "end_line": 158
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "string_implicit_backslashes",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "double_quoted": "escape",
+                    "heredoc": "escape",
+                    "single_quoted": "unescape"
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\StringNotation\\StringImplicitBackslashesFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/StringNotation/StringImplicitBackslashesFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/StringImplicitBackslashesFixer.php#L49-L196",
+                    "path": "src/Fixer/StringNotation/StringImplicitBackslashesFixer.php",
+                    "start_line": 49,
+                    "end_line": 196
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/StringImplicitBackslashesFixer.php#L49-L196",
+                    "path": "src/Fixer/StringNotation/StringImplicitBackslashesFixer.php",
+                    "start_line": 49,
+                    "end_line": 196
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "string_length_to_empty",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\StringNotation\\StringLengthToEmptyFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/StringNotation/StringLengthToEmptyFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/StringLengthToEmptyFixer.php#L28-L326",
+                    "path": "src/Fixer/StringNotation/StringLengthToEmptyFixer.php",
+                    "start_line": 28,
+                    "end_line": 326
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/StringLengthToEmptyFixer.php#L28-L326",
+                    "path": "src/Fixer/StringNotation/StringLengthToEmptyFixer.php",
+                    "start_line": 28,
+                    "end_line": 326
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "string_line_ending",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\StringNotation\\StringLineEndingFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/StringNotation/StringLineEndingFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/StringLineEndingFixer.php#L33-L78",
+                    "path": "src/Fixer/StringNotation/StringLineEndingFixer.php",
+                    "start_line": 33,
+                    "end_line": 78
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/StringNotation/StringLineEndingFixer.php#L33-L78",
+                    "path": "src/Fixer/StringNotation/StringLineEndingFixer.php",
+                    "start_line": 33,
+                    "end_line": 78
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "switch_continue_to_break",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\SwitchContinueToBreakFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/SwitchContinueToBreakFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/SwitchContinueToBreakFixer.php#L28-L247",
+                    "path": "src/Fixer/ControlStructure/SwitchContinueToBreakFixer.php",
+                    "start_line": 28,
+                    "end_line": 247
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/SwitchContinueToBreakFixer.php#L28-L247",
+                    "path": "src/Fixer/ControlStructure/SwitchContinueToBreakFixer.php",
+                    "start_line": 28,
+                    "end_line": 247
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "ternary_to_elvis_operator",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\TernaryToElvisOperatorFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/TernaryToElvisOperatorFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/TernaryToElvisOperatorFixer.php#L31-L224",
+                    "path": "src/Fixer/Operator/TernaryToElvisOperatorFixer.php",
+                    "start_line": 31,
+                    "end_line": 224
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/TernaryToElvisOperatorFixer.php#L31-L224",
+                    "path": "src/Fixer/Operator/TernaryToElvisOperatorFixer.php",
+                    "start_line": 31,
+                    "end_line": 224
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "ternary_to_null_coalescing",
+            "category": "only_php_cs_fixer",
+            "pint": {
+                "enabled": false,
+                "parameters": null
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": null
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\Operator\\TernaryToNullCoalescingFixer",
+                "configurable": false,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/TernaryToNullCoalescingFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/TernaryToNullCoalescingFixer.php#L29-L222",
+                    "path": "src/Fixer/Operator/TernaryToNullCoalescingFixer.php",
+                    "start_line": 29,
+                    "end_line": 222
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/Operator/TernaryToNullCoalescingFixer.php#L29-L222",
+                    "path": "src/Fixer/Operator/TernaryToNullCoalescingFixer.php",
+                    "start_line": 29,
+                    "end_line": 222
+                },
+                "pint": null
+            }
+        },
+        {
+            "rule": "trailing_comma_in_multiline",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "after_heredoc": false,
+                    "elements": [
+                        "arrays"
+                    ]
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "after_heredoc": true,
+                    "elements": [
+                        "array_destructuring",
+                        "arrays"
+                    ]
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\TrailingCommaInMultilineFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/TrailingCommaInMultilineFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/TrailingCommaInMultilineFixer.php#L53-L250",
+                    "path": "src/Fixer/ControlStructure/TrailingCommaInMultilineFixer.php",
+                    "start_line": 53,
+                    "end_line": 250
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/TrailingCommaInMultilineFixer.php#L53-L250",
+                    "path": "src/Fixer/ControlStructure/TrailingCommaInMultilineFixer.php",
+                    "start_line": 53,
+                    "end_line": 250
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L252",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 252,
+                    "end_line": 252
+                }
+            }
+        },
+        {
+            "rule": "whitespace_after_comma_in_array",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "ensure_single_space": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "ensure_single_space": true
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ArrayNotation\\WhitespaceAfterCommaInArrayFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ArrayNotation/WhitespaceAfterCommaInArrayFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ArrayNotation/WhitespaceAfterCommaInArrayFixer.php#L45-L153",
+                    "path": "src/Fixer/ArrayNotation/WhitespaceAfterCommaInArrayFixer.php",
+                    "start_line": 45,
+                    "end_line": 153
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ArrayNotation/WhitespaceAfterCommaInArrayFixer.php#L45-L153",
+                    "path": "src/Fixer/ArrayNotation/WhitespaceAfterCommaInArrayFixer.php",
+                    "start_line": 45,
+                    "end_line": 153
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L260",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 260,
+                    "end_line": 260
+                }
+            }
+        },
+        {
+            "rule": "yoda_style",
+            "category": "different_configuration",
+            "pint": {
+                "enabled": true,
+                "parameters": {
+                    "always_move_variable": false,
+                    "equal": false,
+                    "identical": false,
+                    "less_and_greater": false
+                }
+            },
+            "php_cs_fixer": {
+                "enabled": true,
+                "parameters": {
+                    "always_move_variable": false,
+                    "equal": true,
+                    "identical": true,
+                    "less_and_greater": null
+                }
+            },
+            "fixer": {
+                "class": "PhpCsFixer\\Fixer\\ControlStructure\\YodaStyleFixer",
+                "configurable": true,
+                "path": "vendor/laravel/pint/builds/pint::vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/YodaStyleFixer.php",
+                "github": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/YodaStyleFixer.php#L54-L759",
+                    "path": "src/Fixer/ControlStructure/YodaStyleFixer.php",
+                    "start_line": 54,
+                    "end_line": 759
+                }
+            },
+            "references": {
+                "php_cs_fixer": {
+                    "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/v3.94.2/src/Fixer/ControlStructure/YodaStyleFixer.php#L54-L759",
+                    "path": "src/Fixer/ControlStructure/YodaStyleFixer.php",
+                    "start_line": 54,
+                    "end_line": 759
+                },
+                "pint": {
+                    "url": "https://github.com/laravel/pint/blob/main/resources/presets/laravel.php#L261-L266",
+                    "path": "resources/presets/laravel.php",
+                    "start_line": 261,
+                    "end_line": 266
+                }
+            }
+        }
+    ],
+    "limitations": [
+        "The comparison only knows about the named PHP-CS-Fixer rulesets that can be inferred from the installed Pint preset.",
+        "If PHP-CS-Fixer adds new rules and Pint has not adopted them yet, this export will not treat those unseen rules as Pint differences automatically.",
+        "Fixer paths inside the JSON use the installed Pint PHAR path plus the internal PHAR file path, separated by \"::\"."
+    ]
+}
