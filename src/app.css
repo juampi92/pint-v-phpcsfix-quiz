@@ -10,8 +10,8 @@
   --outline-strong: rgba(26, 31, 44, 0.18);
   --shadow: 0 28px 64px rgba(26, 31, 44, 0.06);
   --shadow-soft: 0 14px 32px rgba(26, 31, 44, 0.045);
-  --pint: #238d6d;
-  --php: #d28b2f;
+  --php: #238d6d;
+  --pint: #d28b2f;
   --source: #1b67d5;
   --code-bg: #fbfaf7;
   --code-line: rgba(26, 31, 44, 0.045);
@@ -818,7 +818,7 @@ p {
   border-color: rgba(47, 95, 135, 0.34);
 }
 
-.option-card.tool-pint.chosen {
+.option-card.tool-php_cs_fixer.chosen {
   border-color: rgba(13, 138, 122, 0.5);
   background:
     linear-gradient(180deg, rgba(13, 138, 122, 0.1), rgba(255, 255, 255, 0.96) 24%),
@@ -828,7 +828,7 @@ p {
     0 24px 44px rgba(13, 138, 122, 0.14);
 }
 
-.option-card.tool-php_cs_fixer.chosen {
+.option-card.tool-pint.chosen {
   border-color: rgba(203, 109, 47, 0.5);
   background:
     linear-gradient(180deg, rgba(203, 109, 47, 0.1), rgba(255, 255, 255, 0.96) 24%),
@@ -887,11 +887,11 @@ p {
   color: var(--php);
 }
 
-.option-card.tool-pint.chosen .code-block {
+.option-card.tool-php_cs_fixer.chosen .code-block {
   border-color: rgba(13, 138, 122, 0.18);
 }
 
-.option-card.tool-php_cs_fixer.chosen .code-block {
+.option-card.tool-pint.chosen .code-block {
   border-color: rgba(203, 109, 47, 0.18);
 }
 
@@ -1057,13 +1057,13 @@ p {
   align-items: center;
 }
 
-.score-bar.pint .score-fill,
-.summary-stat.pint {
+.score-bar.php .score-fill,
+.summary-stat.php {
   background-image: linear-gradient(90deg, rgba(13, 138, 122, 0.18), rgba(13, 138, 122, 0.07));
 }
 
-.score-bar.php .score-fill,
-.summary-stat.php {
+.score-bar.pint .score-fill,
+.summary-stat.pint {
   background-image: linear-gradient(90deg, rgba(203, 109, 47, 0.18), rgba(203, 109, 47, 0.07));
 }
 
@@ -1199,14 +1199,14 @@ p {
   padding: 1rem 1.05rem;
 }
 
-.export-panel.pint {
+.export-panel.php {
   border-color: rgba(13, 138, 122, 0.14);
   background:
     linear-gradient(180deg, rgba(13, 138, 122, 0.08), rgba(255, 255, 255, 0.92) 26%),
     var(--surface);
 }
 
-.export-panel.php {
+.export-panel.pint {
   border-color: rgba(203, 109, 47, 0.14);
   background:
     linear-gradient(180deg, rgba(203, 109, 47, 0.08), rgba(255, 255, 255, 0.92) 26%),
