@@ -2,6 +2,7 @@
   import Keycap from './Keycap.svelte';
 
   export let autoAdvanceEnabled = true;
+  export let onResetProgress: () => void = () => {};
   export let onToggleAutoAdvance: (enabled: boolean) => void = () => {};
 
   const bindings = [
@@ -59,6 +60,20 @@
       <p>Wait 2 seconds, then move to the next rule automatically.</p>
     </div>
   </label>
+
+  <section class="settings-actions">
+    <div class="settings-action-copy">
+      <strong>Reset quiz progress</strong>
+      <p class="settings-note">
+        Clear your saved answers and jump back to the first rule. Your auto-scroll
+        setting stays the same.
+      </p>
+    </div>
+
+    <button class="settings-reset-button" type="button" on:click={() => onResetProgress()}>
+      Start over
+    </button>
+  </section>
 
   <p class="settings-note">
     Clicking either answer card still votes directly.

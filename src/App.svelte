@@ -114,18 +114,23 @@
     }
   }
 
-  function saveAnswers(): void {
+  function saveAnswers(nextAnswers: Record<string, AnswerSide>): void {
+    if (Object.keys(nextAnswers).length === 0) {
+      window.localStorage.removeItem(storageKey);
+      return;
+    }
+
     const payload: StoredAnswers = {
       version: quizDocument.schema_version,
-      answers,
+      answers: nextAnswers,
     };
 
     window.localStorage.setItem(storageKey, JSON.stringify(payload));
   }
 
-  function saveUiPreferences(): void {
+  function saveUiPreferences(nextAutoAdvanceEnabled: boolean): void {
     const payload: UiPreferences = {
-      autoAdvanceEnabled,
+      autoAdvanceEnabled: nextAutoAdvanceEnabled,
     };
 
     window.localStorage.setItem(settingsKey, JSON.stringify(payload));
@@ -443,11 +448,11 @@
   });
 
   $: if (hydrated) {
-    saveAnswers();
+    saveAnswers(answers);
   }
 
   $: if (hydrated) {
-    saveUiPreferences();
+    saveUiPreferences(autoAdvanceEnabled);
   }
 </script>
 
@@ -523,6 +528,7 @@
         >
           <NavigationPanel
             autoAdvanceEnabled={autoAdvanceEnabled}
+            onResetProgress={resetAnswers}
             onToggleAutoAdvance={handleAutoAdvanceToggle}
           />
         </div>
@@ -557,55 +563,24 @@
 
       <section
         use:trackSummary
-        class:selected={summarySelected}
         class="summary-slot"
       >
-        <footer class="summary-stage-card">
+        <footer>
           <ScoreSummary
             {answers}
             {questions}
-            onReset={resetAnswers}
           />
 
           <section class="footer-summary">
-            <div class="footer-card path-card">
-              <span class="panel-eyebrow">Closest path to your chosen configuration</span>
-              <strong>{resultProfile.pathBaseLabel}</strong>
-              <p>{resultProfile.pathSummary}</p>
-
-              {#if resultProfile.pathRules.length > 0}
-                <div class="path-chips">
-                  {#each resultProfile.pathRules.slice(0, 6) as rule}
-                    <span class="path-chip">{formatRuleName(rule)}</span>
-                  {/each}
-
-                  {#if resultProfile.pathRules.length > 6}
-                    <span class="path-chip muted">+{resultProfile.pathRules.length - 6} more</span>
-                  {/if}
-                </div>
-              {/if}
-            </div>
-
             <FormatterExport
               {resultProfile}
               sections={formatterExportSections}
             />
 
             <section class="footer-meta">
-              <div class="footer-card footer-credits">
-                <span class="panel-eyebrow">Credits</span>
-                <strong>Copyright {currentYear}</strong>
+              <div class="footer-credits">
                 <p>
-                  by
-                  <a
-                    href="https://barreto.jp"
-                    rel="noreferrer"
-                    target="_self"
-                  >
-                    juampi92
-                  </a>
-                </p>
-                <p>
+                  <span>Copyright {currentYear}</span> | 
                   directed by
                   <a
                     href="https://barreto.jp"
@@ -617,9 +592,7 @@
                 </p>
               </div>
 
-              <div class="footer-card footer-versions">
-                <span class="panel-eyebrow">Versions</span>
-
+              <div class="footer-versions">
                 <div class="footer-version-grid">
                   <div class="footer-version-card">
                     <strong>Laravel Pint</strong>

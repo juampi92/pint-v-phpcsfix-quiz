@@ -19,11 +19,11 @@
       <p>
         {#if hasAnswers}
           {#if resultProfile.recommendation}
-            Start from {resultProfile.pathBaseLabel} and copy the opposite-side choices into the
-            formatter that needs them.
+            Use the snippets below to mirror the selected rules into the formatter that needs
+            them.
           {:else}
-            The recommendation is still provisional, but the footer can already split your answers
-            into Pint and PHP-CS-Fixer fragments.
+            The recommendation is still provisional, but the footer can already split your
+            answers into Pint and PHP-CS-Fixer fragments.
           {/if}
         {:else}
           Answer a few rules and the footer will split the selected configuration into Pint and
@@ -54,7 +54,7 @@
 
         {#if section.rules.length > 0}
           <div class="export-snippet">
-            <CodeBlock code={section.snippet} original={null} tone={section.tool} />
+            <CodeBlock code={section.snippet} copyable original={null} tone={section.tool} />
           </div>
 
           <p class="export-note">

@@ -5,21 +5,30 @@
   export let questions: QuizQuestion[] = [];
   export let answers: Record<string, AnswerSide> = {};
   export let compact = false;
-  export let onReset: (() => void) | null = null;
 
   $: resultProfile = buildResultProfile(questions, answers);
   $: answeredCount = resultProfile.answeredCount;
-  $: pintVotes = answeredCount - resultProfile.pintDistance;
-  $: phpVotes = resultProfile.pintDistance;
   $: remaining = resultProfile.remainingCount;
+  $: pintVotes = resultProfile.pintVotes;
+  $: phpVotes = resultProfile.phpVotes;
   $: pintPercent = answeredCount > 0 ? Math.round((pintVotes / answeredCount) * 100) : 0;
   $: phpPercent = answeredCount > 0 ? 100 - pintPercent : 0;
+  $: recommendationAccent =
+    resultProfile.recommendation === 'pint'
+      ? 'var(--pint)'
+      : resultProfile.recommendation === 'php_cs_fixer'
+        ? 'var(--php)'
+        : 'var(--muted)';
   $: summaryCopy =
     answeredCount === 0
-      ? 'Pick the formatting you prefer on each card and the site will keep score for you.'
-      : resultProfile.provisional
-        ? `Provisional read: ${resultProfile.recommendationLabel}. ${remaining} ${remaining === 1 ? 'rule still needs' : 'rules still need'} your vote.`
-        : `${resultProfile.recommendationLabel} is the current match with ${resultProfile.confidenceLabel} confidence.`;
+      ? 'Pick the formatting you prefer on each rule and the score will fill in.'
+      : resultProfile.recommendation
+        ? `${resultProfile.recommendationLabel} is ahead right now.`
+        : 'The vote is tied right now.';
+  $: splitCopy =
+    answeredCount === 0
+      ? 'No votes yet'
+      : `${phpPercent}% PHP-CS-Fixer / ${pintPercent}% Pint`;
 </script>
 
 {#if compact}
@@ -31,19 +40,19 @@
     </div>
 
     <div class="score-bars">
-      <div class="score-bar pint">
-        <span class="score-bar-label">Pint</span>
-        <div class="score-track">
-          <span class="score-fill" style:width={`${pintPercent}%`}></span>
-        </div>
-        <strong>{pintVotes}</strong>
-      </div>
       <div class="score-bar php">
         <span class="score-bar-label">PHP-CS-Fixer</span>
         <div class="score-track">
           <span class="score-fill" style:width={`${phpPercent}%`}></span>
         </div>
         <strong>{phpVotes}</strong>
+      </div>
+      <div class="score-bar pint">
+        <span class="score-bar-label">Pint</span>
+        <div class="score-track">
+          <span class="score-fill" style:width={`${pintPercent}%`}></span>
+        </div>
+        <strong>{pintVotes}</strong>
       </div>
     </div>
   </section>
@@ -55,35 +64,42 @@
         <h2>Your formatter profile</h2>
         <p class:provisional={resultProfile.provisional}>{summaryCopy}</p>
       </div>
-
-      {#if onReset}
-        <button class="reset-button" type="button" on:click={() => onReset?.()}>
-          Reset answers
-        </button>
-      {/if}
     </header>
 
     <div class="summary-stats">
       <div
-        class:php={resultProfile.recommendation === 'php_cs_fixer'}
-        class:pint={resultProfile.recommendation === 'pint'}
-        class="summary-stat"
+        class="summary-stat recommendation"
+        style={`--summary-accent: ${recommendationAccent};`}
       >
         <span class="summary-label">Recommendation</span>
         <strong>{resultProfile.recommendationLabel}</strong>
         <span>{resultProfile.recommendationDetail}</span>
       </div>
 
-      <div class="summary-stat neutral">
-        <span class="summary-label">Confidence</span>
-        <strong>{resultProfile.confidenceLabel}</strong>
-        <span>{resultProfile.confidenceDetail}</span>
-      </div>
+      <div class="summary-stat split">
+        <div class="summary-stat-top">
+          <div>
+            <span class="summary-label">Vote split</span>
+            <strong>{splitCopy}</strong>
+          </div>
 
-      <div class="summary-stat neutral">
-        <span class="summary-label">Distance from base</span>
-        <strong>{resultProfile.distanceValue}</strong>
-        <span>{resultProfile.distanceDetail}</span>
+          <span class="split-pill">{answeredCount}/{questions.length} answered</span>
+        </div>
+
+        <div
+          aria-label={`Vote split: ${phpPercent}% PHP-CS-Fixer and ${pintPercent}% Pint`}
+          aria-hidden={answeredCount === 0}
+          class="summary-split-track"
+          style={`--php-share: ${phpPercent}%; --pint-share: ${pintPercent}%;`}
+        >
+          <span class="summary-split-fill php"></span>
+          <span class="summary-split-fill pint"></span>
+        </div>
+
+        <div class="summary-split-meta">
+          <span class="split-pill php">{phpPercent}% PHP-CS-Fixer</span>
+          <span class="split-pill pint">{pintPercent}% Pint</span>
+        </div>
       </div>
     </div>
 

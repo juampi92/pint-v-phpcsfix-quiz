@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import { buildDiffRows } from '../diff';
   import { highlightPhp } from '../highlight';
   import { buildSegments } from '../render';
@@ -9,6 +9,7 @@
   export let code = '';
   export let original: string | null = null;
   export let tone: 'source' | 'pint' | 'php_cs_fixer' | 'neutral' = 'neutral';
+  export let copyable = false;
 
   interface DisplayLine {
     kind: DiffKind;
@@ -21,6 +22,8 @@
   let ready = false;
   let loading = false;
   let showDiff = true;
+  let copied = false;
+  let copyResetTimer: number | null = null;
   let diffDisplayLines: DisplayLine[] = [];
   let plainDisplayLines: DisplayLine[] = [];
   let displayLines: DisplayLine[] = [];
@@ -31,6 +34,55 @@
     return {
       tokens: [],
     };
+  }
+
+  function clearCopyTimer(): void {
+    if (copyResetTimer !== null) {
+      window.clearTimeout(copyResetTimer);
+      copyResetTimer = null;
+    }
+  }
+
+  function fallbackCopy(): void {
+    const fallback = document.createElement('textarea');
+    fallback.value = code;
+    fallback.setAttribute('readonly', 'true');
+    fallback.style.position = 'fixed';
+    fallback.style.top = '-9999px';
+    fallback.style.left = '-9999px';
+    document.body.appendChild(fallback);
+    fallback.select();
+    document.execCommand('copy');
+    fallback.remove();
+  }
+
+  async function copyCode(): Promise<void> {
+    try {
+      if (window.navigator.clipboard?.writeText) {
+        await window.navigator.clipboard.writeText(code);
+      } else {
+        fallbackCopy();
+      }
+
+      copied = true;
+      clearCopyTimer();
+      copyResetTimer = window.setTimeout(() => {
+        copied = false;
+        copyResetTimer = null;
+      }, 1400);
+    } catch {
+      try {
+        fallbackCopy();
+        copied = true;
+        clearCopyTimer();
+        copyResetTimer = window.setTimeout(() => {
+          copied = false;
+          copyResetTimer = null;
+        }, 1400);
+      } catch {
+        copied = false;
+      }
+    }
   }
 
   async function load(): Promise<void> {
@@ -110,18 +162,36 @@
       observer.disconnect();
     };
   });
+
+  onDestroy(() => {
+    clearCopyTimer();
+  });
 </script>
 
 <div bind:this={host} class={`code-block tone-${tone}`}>
-  {#if ready && original !== null}
+  {#if (ready && original !== null) || copyable}
     <div
-      class="code-block-toggle"
+      class="code-block-actions"
       role="presentation"
       on:click|stopPropagation
       on:keydown|stopPropagation
       on:pointerdown|stopPropagation
     >
-      <SlidingSwitch bind:checked={showDiff} label="Toggle diff view" offLabel="Plain" onLabel="Diff" />
+      {#if ready && original !== null}
+        <SlidingSwitch bind:checked={showDiff} label="Toggle diff view" offLabel="Plain" onLabel="Diff" />
+      {/if}
+
+      {#if copyable}
+        <button
+          aria-label={copied ? 'Copied to clipboard' : 'Copy code to clipboard'}
+          class:copied={copied}
+          class="code-copy-button"
+          type="button"
+          on:click|stopPropagation={copyCode}
+        >
+          {copied ? 'Copied' : 'Copy'}
+        </button>
+      {/if}
     </div>
   {/if}
 
