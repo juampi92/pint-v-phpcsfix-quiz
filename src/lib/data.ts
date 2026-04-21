@@ -46,11 +46,11 @@ export function getCategoryLabel(category: QuizCategory): string {
     return 'Different configuration';
   }
 
-  if (category === 'only_php_cs_fixer') {
-    return 'Only in PHP-CS-Fixer';
+  if (category === 'missing_from_pint') {
+    return 'Missing from Pint';
   }
 
-  return 'Only in Pint';
+  return 'Pint differs from rule default';
 }
 
 export function formatRuleName(rule: string): string {

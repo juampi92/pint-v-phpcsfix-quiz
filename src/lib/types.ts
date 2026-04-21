@@ -1,9 +1,15 @@
 export type ToolId = 'pint' | 'php_cs_fixer';
 export type AnswerSide = 'left' | 'right';
 export type QuizCategory =
-  | 'only_php_cs_fixer'
-  | 'only_pint'
-  | 'different_configuration';
+  | 'missing_from_pint'
+  | 'different_configuration'
+  | 'pint_differs_from_rule_default';
+
+export type ComparisonCase =
+  | 'php_cs_fixer_default_vs_pint'
+  | 'pint_vs_php_cs_fixer_rule_default';
+
+export type PhpCsFixerSide = 'raw_default' | 'rule_default';
 
 export interface QuizRuleState {
   enabled: boolean;
@@ -34,6 +40,10 @@ export interface QuizSourceSample {
 export interface QuizQuestion {
   rule: string;
   category: QuizCategory;
+  comparison: {
+    case: ComparisonCase;
+    php_cs_fixer_side: PhpCsFixerSide;
+  };
   presentation: {
     pint_side: AnswerSide;
   };
@@ -62,9 +72,9 @@ export interface QuizDocument {
     differences_total: number;
     quiz_questions: number;
     skipped: number;
-    only_php_cs_fixer: number;
-    only_pint: number;
+    missing_from_pint: number;
     different_configuration: number;
+    pint_differs_from_rule_default: number;
   };
   questions: QuizQuestion[];
   skipped: QuizSkippedRule[];

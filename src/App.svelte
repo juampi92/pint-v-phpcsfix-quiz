@@ -1,10 +1,12 @@
 <svelte:head>
-  <title>Pint or PHP-CS-Fixer?</title>
+  <title>Pint vs PHP-CS-Fixer</title>
 </svelte:head>
 
 <script lang="ts">
   import { onMount } from 'svelte';
+  import HeroSection from './lib/components/HeroSection.svelte';
   import Keycap from './lib/components/Keycap.svelte';
+  import FormatterExport from './lib/components/FormatterExport.svelte';
   import NavigationPanel from './lib/components/NavigationPanel.svelte';
   import QuestionCard from './lib/components/QuestionCard.svelte';
   import ScoreSummary from './lib/components/ScoreSummary.svelte';
@@ -14,6 +16,8 @@
     quizDocument,
     storageKey,
   } from './lib/data';
+  import { buildFormatterExportSections } from './lib/formatter-export';
+  import { buildResultProfile } from './lib/results';
   import {
     AUTO_ADVANCE_DELAY,
     animateVerticalScroll,
@@ -38,6 +42,7 @@
   let autoAdvanceFillKey = 0;
   let activeScrollCancel: (() => void) | null = null;
   const questionNodes = new Map<number, HTMLElement>();
+  const currentYear = new Date().getFullYear();
   const validRules = new Set(questions.map((question) => question.rule));
   const settingsKey = `${storageKey}:ui`;
   const totalSections = questions.length + 1;
@@ -46,17 +51,19 @@
   $: completionPercent =
     questions.length > 0 ? Math.round((answeredCount / questions.length) * 100) : 0;
   $: summarySelected = selectedSectionIndex === questions.length;
+  $: resultProfile = buildResultProfile(questions, answers);
+  $: formatterExportSections = buildFormatterExportSections(questions, answers);
   $: selectedRuleName =
     selectedSectionIndex < 0
       ? 'Choose a rule to begin'
       : summarySelected
-        ? 'Next steps placeholder'
+        ? 'Your formatter profile'
         : formatRuleName(questions[selectedSectionIndex]?.rule ?? '');
   $: selectedPositionLabel =
     selectedSectionIndex < 0
       ? 'No rule selected'
       : summarySelected
-        ? 'Final stage'
+        ? 'Results'
         : `Rule ${selectedSectionIndex + 1} of ${questions.length}`;
   $: hasNextSection = selectedSectionIndex < totalSections - 1;
 
@@ -454,80 +461,7 @@
     on:scroll={handleScroll}
   >
     <main class="page">
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="hero-meta">
-            <span class="hero-kicker">Formatter Match</span>
-            <span class="hero-meta-note">A blind side-by-side for PHP style defaults</span>
-          </div>
-
-          <h1>Pick the formatter output you would actually keep.</h1>
-          <p class="hero-lead">
-            Compare Laravel Pint and raw PHP-CS-Fixer defaults one visible rule
-            at a time. Vote on the code you would merge first. We will worry
-            about naming the winner and generating configuration after that.
-          </p>
-
-          <div class="hero-summary">
-            <div class="hero-summary-item">
-              <strong>{quizDocument.counts.quiz_questions}</strong>
-              <span>real rule differences</span>
-            </div>
-
-            <div class="hero-summary-item">
-              <strong>Blind</strong>
-              <span>sides stay anonymous until you choose</span>
-            </div>
-
-            <div class="hero-summary-item">
-              <strong>Local</strong>
-              <span>answers stay in this browser for now</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-side">
-          <div class="hero-sketch" aria-hidden="true">
-            <div class="hero-sticker hero-sticker-pint">
-              <span class="hero-sticker-tag">Option A</span>
-              <strong>One default</strong>
-              <p>Opinionated and ready to go.</p>
-            </div>
-
-            <div class="hero-sticker hero-sticker-php">
-              <span class="hero-sticker-tag">Option B</span>
-              <strong>The other default</strong>
-              <p>Rawer and more choose-your-path.</p>
-            </div>
-
-            <span class="hero-sketch-note">Choose the code, not the badge.</span>
-          </div>
-
-          <div class="hero-instructions">
-            <div class="instruction-card">
-              <div class="instruction-keys">
-                <Keycap label="↑" />
-                <Keycap label="↓" />
-              </div>
-              <div>
-                <strong>Read the sample</strong>
-                <p>Move between rules and keep the current one centered.</p>
-              </div>
-            </div>
-
-            <div class="instruction-card">
-              <div class="instruction-keys">
-                <Keycap label="←" />
-                <Keycap label="→" />
-              </div>
-              <div>
-                <strong>Pick the output you prefer</strong>
-                <p>Click a side or use the arrows. The labels reveal after the vote.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection questionsCount={quizDocument.counts.quiz_questions} />
 
       <section
         bind:this={navigationNode}
@@ -632,6 +566,74 @@
             {questions}
             onReset={resetAnswers}
           />
+
+          <section class="footer-summary">
+            <div class="footer-card path-card">
+              <span class="panel-eyebrow">Closest path to your chosen configuration</span>
+              <strong>{resultProfile.pathBaseLabel}</strong>
+              <p>{resultProfile.pathSummary}</p>
+
+              {#if resultProfile.pathRules.length > 0}
+                <div class="path-chips">
+                  {#each resultProfile.pathRules.slice(0, 6) as rule}
+                    <span class="path-chip">{formatRuleName(rule)}</span>
+                  {/each}
+
+                  {#if resultProfile.pathRules.length > 6}
+                    <span class="path-chip muted">+{resultProfile.pathRules.length - 6} more</span>
+                  {/if}
+                </div>
+              {/if}
+            </div>
+
+            <FormatterExport
+              {resultProfile}
+              sections={formatterExportSections}
+            />
+
+            <section class="footer-meta">
+              <div class="footer-card footer-credits">
+                <span class="panel-eyebrow">Credits</span>
+                <strong>Copyright {currentYear}</strong>
+                <p>
+                  by
+                  <a
+                    href="https://barreto.jp"
+                    rel="noreferrer"
+                    target="_self"
+                  >
+                    juampi92
+                  </a>
+                </p>
+                <p>
+                  directed by
+                  <a
+                    href="https://barreto.jp"
+                    rel="noreferrer"
+                    target="_self"
+                  >
+                    juampi92
+                  </a>
+                </p>
+              </div>
+
+              <div class="footer-card footer-versions">
+                <span class="panel-eyebrow">Versions</span>
+
+                <div class="footer-version-grid">
+                  <div class="footer-version-card">
+                    <strong>Laravel Pint</strong>
+                    <p>{quizDocument.package_versions['laravel/pint']}</p>
+                  </div>
+
+                  <div class="footer-version-card">
+                    <strong>PHP-CS-Fixer</strong>
+                    <p>{quizDocument.package_versions['friendsofphp/php-cs-fixer']}</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
         </footer>
       </section>
     </main>

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getToolForSide } from '../data';
+  import { buildResultProfile } from '../results';
   import type { AnswerSide, QuizQuestion } from '../types';
 
   export let questions: QuizQuestion[] = [];
@@ -7,21 +7,19 @@
   export let compact = false;
   export let onReset: (() => void) | null = null;
 
-  $: answeredQuestions = questions.filter((question) => answers[question.rule]);
-  $: answeredCount = answeredQuestions.length;
-  $: pintVotes = answeredQuestions.filter(
-    (question) => getToolForSide(question, answers[question.rule] as AnswerSide) === 'pint',
-  ).length;
-  $: phpVotes = answeredCount - pintVotes;
-  $: remaining = questions.length - answeredCount;
+  $: resultProfile = buildResultProfile(questions, answers);
+  $: answeredCount = resultProfile.answeredCount;
+  $: pintVotes = answeredCount - resultProfile.pintDistance;
+  $: phpVotes = resultProfile.pintDistance;
+  $: remaining = resultProfile.remainingCount;
   $: pintPercent = answeredCount > 0 ? Math.round((pintVotes / answeredCount) * 100) : 0;
   $: phpPercent = answeredCount > 0 ? 100 - pintPercent : 0;
   $: summaryCopy =
     answeredCount === 0
       ? 'Pick the formatting you prefer on each card and the site will keep score for you.'
-      : answeredCount === questions.length
-        ? `You currently lean ${pintPercent}% Pint and ${phpPercent}% PHP-CS-Fixer.`
-        : `You have answered ${answeredCount} of ${questions.length} questions.`;
+      : resultProfile.provisional
+        ? `Provisional read: ${resultProfile.recommendationLabel}. ${remaining} ${remaining === 1 ? 'rule still needs' : 'rules still need'} your vote.`
+        : `${resultProfile.recommendationLabel} is the current match with ${resultProfile.confidenceLabel} confidence.`;
 </script>
 
 {#if compact}
@@ -53,13 +51,9 @@
   <section class="score-summary full">
     <header class="summary-header">
       <div>
-        <span class="panel-eyebrow">Next</span>
-        <h2>The recommendation screen comes next.</h2>
-        <p>
-          This last section is intentionally quiet for now. Finish the remaining
-          questions, review the choices above, or restart the run and compare
-          again.
-        </p>
+        <span class="panel-eyebrow">Result</span>
+        <h2>Your formatter profile</h2>
+        <p class:provisional={resultProfile.provisional}>{summaryCopy}</p>
       </div>
 
       {#if onReset}
@@ -70,28 +64,36 @@
     </header>
 
     <div class="summary-stats">
-      <div class="summary-stat neutral">
-        <span class="summary-label">Answered</span>
-        <strong>{answeredCount}</strong>
-        <span>of {questions.length} questions</span>
+      <div
+        class:php={resultProfile.recommendation === 'php_cs_fixer'}
+        class:pint={resultProfile.recommendation === 'pint'}
+        class="summary-stat"
+      >
+        <span class="summary-label">Recommendation</span>
+        <strong>{resultProfile.recommendationLabel}</strong>
+        <span>{resultProfile.recommendationDetail}</span>
       </div>
 
       <div class="summary-stat neutral">
-        <span class="summary-label">Still open</span>
-        <strong>{remaining}</strong>
-        <span>questions left to decide</span>
+        <span class="summary-label">Confidence</span>
+        <strong>{resultProfile.confidenceLabel}</strong>
+        <span>{resultProfile.confidenceDetail}</span>
       </div>
 
       <div class="summary-stat neutral">
-        <span class="summary-label">Soon</span>
-        <strong>Match</strong>
-        <span>Recommendation and starter config</span>
+        <span class="summary-label">Distance from base</span>
+        <strong>{resultProfile.distanceValue}</strong>
+        <span>{resultProfile.distanceDetail}</span>
       </div>
     </div>
 
-    <p class="summary-note">
-      The answers are still stored in this browser, so the future recommendation
-      step can build on the same run.
+    <p class:provisional={resultProfile.provisional} class="summary-note">
+      {#if resultProfile.provisional}
+        This recommendation is provisional until the remaining {remaining}
+        {remaining === 1 ? 'rule is' : 'rules are'} answered.
+      {:else}
+        Every rule has been answered, so this result is final.
+      {/if}
     </p>
   </section>
 {/if}
