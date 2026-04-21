@@ -6,14 +6,24 @@
     "additionalProperties": false,
     "required": [
         "schema_version",
+        "preset",
+        "output",
         "package_versions",
+        "baseline",
+        "counts",
         "differences",
         "limitations"
     ],
     "properties": {
         "schema_version": {
             "type": "integer",
-            "const": 1
+            "const": 4
+        },
+        "preset": {
+            "type": "string"
+        },
+        "output": {
+            "type": "string"
         },
         "package_versions": {
             "type": "object",
@@ -30,6 +40,12 @@
                     "type": "string"
                 }
             }
+        },
+        "baseline": {
+            "$ref": "#/$defs/baseline"
+        },
+        "counts": {
+            "$ref": "#/$defs/counts"
         },
         "differences": {
             "type": "array",
@@ -73,6 +89,54 @@
                 }
             ]
         },
+        "baseline": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "strategy",
+                "php_cs_fixer_defaults"
+            ],
+            "properties": {
+                "strategy": {
+                    "type": "string",
+                    "const": "php_cs_fixer_raw_defaults_then_rule_defaults_for_pint_only_rules"
+                },
+                "php_cs_fixer_defaults": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/$defs/jsonValue"
+                    }
+                }
+            }
+        },
+        "counts": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "differences",
+                "missing_from_pint",
+                "different_configuration",
+                "pint_differs_from_rule_default"
+            ],
+            "properties": {
+                "differences": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "missing_from_pint": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "different_configuration": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "pint_differs_from_rule_default": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
         "ruleState": {
             "type": "object",
             "additionalProperties": false,
@@ -90,12 +154,75 @@
                             "type": "null"
                         },
                         {
-                            "type": "object",
-                            "additionalProperties": {
-                                "$ref": "#/$defs/jsonValue"
-                            }
+                            "$ref": "#/$defs/jsonValue"
                         }
                     ]
+                }
+            }
+        },
+        "comparison": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "case",
+                "php_cs_fixer_side"
+            ],
+            "properties": {
+                "case": {
+                    "type": "string",
+                    "enum": [
+                        "php_cs_fixer_default_vs_pint",
+                        "pint_vs_php_cs_fixer_rule_default"
+                    ]
+                },
+                "php_cs_fixer_side": {
+                    "type": "string",
+                    "enum": [
+                        "raw_default",
+                        "rule_default"
+                    ]
+                }
+            }
+        },
+        "phpCsFixerStates": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "comparison",
+                "raw_default",
+                "rule_default"
+            ],
+            "properties": {
+                "comparison": {
+                    "$ref": "#/$defs/ruleState"
+                },
+                "raw_default": {
+                    "$ref": "#/$defs/ruleState"
+                },
+                "rule_default": {
+                    "$ref": "#/$defs/ruleState"
+                }
+            }
+        },
+        "phpCsFixerRuleSetMembership": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "direct",
+                "inherited"
+            ],
+            "properties": {
+                "direct": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "inherited": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -156,6 +283,68 @@
                 }
             }
         },
+        "phpCsFixerRulesetReferences": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "definition",
+                "rule"
+            ],
+            "properties": {
+                "definition": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/githubReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "rule": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/githubReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            }
+        },
+        "phpCsFixerRuleset": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name",
+                "description",
+                "risky",
+                "declared_directly",
+                "state",
+                "references"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "risky": {
+                    "type": "boolean"
+                },
+                "declared_directly": {
+                    "type": "boolean"
+                },
+                "state": {
+                    "$ref": "#/$defs/ruleState"
+                },
+                "references": {
+                    "$ref": "#/$defs/phpCsFixerRulesetReferences"
+                }
+            }
+        },
         "references": {
             "type": "object",
             "additionalProperties": false,
@@ -192,8 +381,11 @@
             "required": [
                 "rule",
                 "category",
+                "comparison",
                 "pint",
                 "php_cs_fixer",
+                "php_cs_fixer_rule_set_membership",
+                "php_cs_fixer_rulesets",
                 "fixer",
                 "references"
             ],
@@ -204,16 +396,28 @@
                 "category": {
                     "type": "string",
                     "enum": [
-                        "only_php_cs_fixer",
-                        "only_pint",
-                        "different_configuration"
+                        "missing_from_pint",
+                        "different_configuration",
+                        "pint_differs_from_rule_default"
                     ]
+                },
+                "comparison": {
+                    "$ref": "#/$defs/comparison"
                 },
                 "pint": {
                     "$ref": "#/$defs/ruleState"
                 },
                 "php_cs_fixer": {
-                    "$ref": "#/$defs/ruleState"
+                    "$ref": "#/$defs/phpCsFixerStates"
+                },
+                "php_cs_fixer_rule_set_membership": {
+                    "$ref": "#/$defs/phpCsFixerRuleSetMembership"
+                },
+                "php_cs_fixer_rulesets": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/phpCsFixerRuleset"
+                    }
                 },
                 "fixer": {
                     "$ref": "#/$defs/fixer"
