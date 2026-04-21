@@ -1,5 +1,5 @@
 {
-  "name": "php-cs-fixer-defaults-site",
+  "name": "pint-v-phpcsfix-quiz",
   "private": true,
   "version": "0.1.0",
   "packageManager": "npm@11.6.2",
@@ -8,8 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "generate:quiz-data": "php scripts/export-quiz-data.php"
+    "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^7.0.0",

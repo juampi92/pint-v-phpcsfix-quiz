@@ -1,5 +1,5 @@
 <svelte:head>
-  <title>Pint vs PHP-CS-Fixer</title>
+  <title>Pint vs PHP-CS-Fixer Quiz</title>
 </svelte:head>
 
 <script lang="ts">
@@ -161,6 +161,10 @@
 
   function toggleSettings(): void {
     settingsOpen = !settingsOpen;
+  }
+
+  function isInsideSettingsDrawer(target: EventTarget | null): boolean {
+    return target instanceof Element && target.closest('.settings-drawer') !== null;
   }
 
   function getStickyOffset(): number {
@@ -382,7 +386,11 @@
     scheduleSelectionSync();
   }
 
-  function handleUserScrollIntent(): void {
+  function handleUserScrollIntent(event: Event): void {
+    if (isInsideSettingsDrawer(event.target)) {
+      return;
+    }
+
     cancelAutoAdvance();
     cancelActiveScroll();
     closeSettings();
@@ -425,8 +433,8 @@
 
     if (scrollNode) {
       const node = scrollNode;
-      const onWheel = () => handleUserScrollIntent();
-      const onTouchStart = () => handleUserScrollIntent();
+      const onWheel = (event: WheelEvent) => handleUserScrollIntent(event);
+      const onTouchStart = (event: TouchEvent) => handleUserScrollIntent(event);
 
       node.addEventListener('wheel', onWheel, { passive: true });
       node.addEventListener('touchstart', onTouchStart, { passive: true });

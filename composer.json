@@ -1,17 +1,9 @@
 {
-    "name": "juanpablo/php-cs-fixer-defaults",
-    "description": "Export deterministic behavior differences between Laravel Pint and PHP-CS-Fixer defaults.",
+    "name": "juampi92/pint-v-phpcsfix-quiz",
+    "description": "A blind test comparing Laravel Pint and PHP-CS-Fixer formatter preferences.",
     "type": "project",
     "require-dev": {
         "laravel/pint": "^1.0"
     },
-    "scripts": {
-        "export-differences": "php scripts/export-differences.php",
-        "post-install-cmd": [
-            "@export-differences"
-        ],
-        "post-update-cmd": [
-            "@export-differences"
-        ]
-    }
+    "scripts": {}
 }

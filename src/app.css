@@ -596,6 +596,11 @@ p {
   top: calc(100% + 0.65rem);
   right: 0;
   width: min(360px, calc(100vw - 2rem));
+  max-height: calc(100svh - var(--nav-height) - 1rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
   opacity: 0;
   pointer-events: none;
   transform: translateY(-10px) scale(0.98);
@@ -1560,7 +1565,7 @@ p {
   }
 
   .hero-sketch {
-    min-height: 220px;
+    display: none;
   }
 
   .hero,
@@ -1580,24 +1585,6 @@ p {
 
   .hero-summary {
     display: grid;
-  }
-
-  .hero-sketch {
-    min-height: 260px;
-  }
-
-  .hero-sticker {
-    width: min(100%, 200px);
-  }
-
-  .hero-sticker-pint {
-    left: 0.8rem;
-    top: 0.9rem;
-  }
-
-  .hero-sticker-php {
-    right: 0.8rem;
-    bottom: 4rem;
   }
 
   .code-block-actions {
@@ -1624,6 +1611,33 @@ p {
   .question-badges,
   .panel-meta {
     justify-content: flex-start;
+  }
+
+  .settings-drawer {
+    width: min(100vw - 0.75rem, 360px);
+    max-height: calc(100svh - var(--nav-height) - 0.75rem);
+  }
+
+  .settings-panel {
+    gap: 0.8rem;
+    padding: 0.95rem;
+  }
+
+  .settings-header h2 {
+    font-size: 1.55rem;
+    line-height: 1;
+  }
+
+  .settings-toggle {
+    padding: 0.82rem 0.9rem;
+  }
+
+  .settings-actions {
+    padding-top: 0.15rem;
+  }
+
+  .binding-row {
+    align-items: flex-start;
   }
 
   .quiz-nav-actions {

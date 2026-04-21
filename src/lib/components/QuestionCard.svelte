@@ -18,11 +18,7 @@
 
   const sides: AnswerSide[] = ['left', 'right'];
 
-  $: chosenTool = answer ? getToolForSide(question, answer) : null;
   $: formattedRule = formatRuleName(question.rule);
-  $: answerCopy = chosenTool
-    ? `${getLabelForTool(chosenTool)} won this round.`
-    : 'Choose the output you would merge for this rule.';
 </script>
 
 <article class:selected class="question-card" id={`question-${question.rule}`}>
@@ -117,8 +113,4 @@
       </div>
     {/each}
   </div>
-
-  <p aria-live="polite" class:answered={answer !== undefined} class="answer-reveal">
-    {answerCopy}
-  </p>
 </article>
