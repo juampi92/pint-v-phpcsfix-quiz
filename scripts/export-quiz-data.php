@@ -3,20 +3,27 @@
 declare(strict_types=1);
 
 namespace {
-    use PhpCsFixer\Config;
-    use PhpCsFixer\ConfigInterface;
-    use PhpCsFixer\Fixer\ConfigurableFixerInterface;
+    require_once __DIR__.'/lib/export-runtime.php';
+
     use PhpCsFixer\Fixer\FixerInterface;
-    use PhpCsFixer\FixerFactory;
     use PhpCsFixer\FixerDefinition\CodeSampleInterface;
     use PhpCsFixer\FixerDefinition\FileSpecificCodeSampleInterface;
-    use PhpCsFixer\RuleSet\RuleSet;
-    use PhpCsFixer\Tokenizer\Tokens;
+    use function PhpCsFixerDefaults\Scripts\isListArray;
+    use function PhpCsFixerDefaults\Scripts\loadDefaultPhpCsFixerConfig;
+    use function PhpCsFixerDefaults\Scripts\loadJsonFile;
+    use function PhpCsFixerDefaults\Scripts\loadPintConfig;
+    use function PhpCsFixerDefaults\Scripts\normalizeOutputValue;
+    use function PhpCsFixerDefaults\Scripts\preparePintPhar;
+    use function PhpCsFixerDefaults\Scripts\renderRuleOutput;
+    use function PhpCsFixerDefaults\Scripts\repositoryPath;
+    use function PhpCsFixerDefaults\Scripts\repositoryRelativePath;
+    use function PhpCsFixerDefaults\Scripts\requirePintAutoloader;
+    use function PhpCsFixerDefaults\Scripts\writeJson;
 
     const DEFAULT_DIFFERENCES = 'generated/pint-php-cs-fixer-differences.json';
     const DEFAULT_OVERRIDES = 'config/quiz-sample-overrides.json';
     const DEFAULT_OUTPUT = 'generated/pint-php-cs-fixer-quiz.json';
-    const QUIZ_SCHEMA_VERSION = 1;
+    const QUIZ_SCHEMA_VERSION = 3;
 
     function usage(): never
     {
@@ -24,7 +31,7 @@ namespace {
 
         fwrite(STDERR, <<<TXT
 Usage:
-  php scripts/{$script} [--input=generated/pint-php-cs-fixer-differences.json] [--overrides=config/quiz-sample-overrides.json] [--output=generated/pint-php-cs-fixer-quiz.json]
+  php scripts/{$script} [--input=generated/pint-php-cs-fixer-differences.json] [--overrides=config/quiz-sample-overrides.json] [--output=generated/pint-php-cs-fixer-quiz.json] [--rule=array_indentation]
 
 TXT);
 
@@ -37,6 +44,7 @@ TXT);
             'input' => DEFAULT_DIFFERENCES,
             'overrides' => DEFAULT_OVERRIDES,
             'output' => DEFAULT_OUTPUT,
+            'rule' => null,
         ];
 
         foreach (array_slice($argv, 1) as $arg) {
@@ -58,102 +66,22 @@ TXT);
                 continue;
             }
 
+            if (str_starts_with($arg, '--rule=')) {
+                $rule = substr($arg, strlen('--rule='));
+
+                if (!is_string($rule) || $rule === '') {
+                    usage();
+                }
+
+                $options['rule'] = $rule;
+
+                continue;
+            }
+
             usage();
         }
 
         return $options;
-    }
-
-    function repositoryRoot(): string
-    {
-        return dirname(__DIR__);
-    }
-
-    function repositoryPath(string $path): string
-    {
-        if ($path === '' || str_starts_with($path, '/') || preg_match('/^[A-Za-z]:[\\\\\\/]/', $path) === 1) {
-            return $path;
-        }
-
-        return repositoryRoot().'/'.$path;
-    }
-
-    function repositoryRelativePath(string $absolutePath): string
-    {
-        $root = str_replace('\\', '/', repositoryRoot());
-        $path = str_replace('\\', '/', $absolutePath);
-
-        if (str_starts_with($path, $root.'/')) {
-            return substr($path, strlen($root) + 1);
-        }
-
-        return $path;
-    }
-
-    function ensureDirectory(string $path): void
-    {
-        if (is_dir($path)) {
-            return;
-        }
-
-        if (!mkdir($path, 0777, true) && !is_dir($path)) {
-            throw new RuntimeException(sprintf('Could not create directory "%s".', $path));
-        }
-    }
-
-    function preparePintPhar(): array
-    {
-        $sourcePath = repositoryPath('vendor/laravel/pint/builds/pint');
-
-        if (!is_file($sourcePath)) {
-            throw new RuntimeException('Could not find the Pint binary under vendor/laravel/pint/builds/pint. Run composer install first.');
-        }
-
-        $targetPath = sys_get_temp_dir().'/php-cs-fixer-defaults-pint.phar';
-        $copyRequired = !is_file($targetPath);
-
-        if (!$copyRequired) {
-            $copyRequired = hash_file('sha256', $sourcePath) !== hash_file('sha256', $targetPath);
-        }
-
-        if ($copyRequired && !copy($sourcePath, $targetPath)) {
-            throw new RuntimeException(sprintf('Could not copy Pint PHAR from "%s" to "%s".', $sourcePath, $targetPath));
-        }
-
-        return [
-            'binary_path' => $sourcePath,
-            'phar_path' => $targetPath,
-            'phar_root' => 'phar://'.$targetPath,
-        ];
-    }
-
-    function requirePintAutoloader(string $pharRoot): void
-    {
-        require_once $pharRoot.'/vendor/autoload.php';
-    }
-
-    function isListArray(array $value): bool
-    {
-        return array_keys($value) === range(0, count($value) - 1);
-    }
-
-    function normalizeOutputValue(mixed $value): mixed
-    {
-        if (!is_array($value)) {
-            return $value;
-        }
-
-        if (isListArray($value)) {
-            return array_map(static fn (mixed $item): mixed => normalizeOutputValue($item), $value);
-        }
-
-        ksort($value);
-
-        foreach ($value as $key => $item) {
-            $value[$key] = normalizeOutputValue($item);
-        }
-
-        return $value;
     }
 
     function valueContains(mixed $container, mixed $needle): bool
@@ -214,31 +142,15 @@ TXT);
         ];
     }
 
-    function newFixerFactory(ConfigInterface $config): FixerFactory
+    function phpCsFixerComparisonState(array $difference): array
     {
-        $factory = new FixerFactory();
-        $factory->registerBuiltInFixers();
+        $state = $difference['php_cs_fixer']['comparison'] ?? $difference['php_cs_fixer'] ?? null;
 
-        if (class_exists(App\Fixers\TypeAnnotationsOnlyFixer::class)) {
-            $factory->registerCustomFixers([
-                new App\Fixers\TypeAnnotationsOnlyFixer(),
-            ]);
+        if (!is_array($state) || !array_key_exists('enabled', $state) || !array_key_exists('parameters', $state)) {
+            throw new RuntimeException(sprintf('Difference entry for "%s" does not expose a PHP-CS-Fixer comparison state.', $difference['rule'] ?? 'unknown'));
         }
 
-        $factory->setWhitespacesConfig(
-            new PhpCsFixer\WhitespacesFixerConfig($config->getIndent(), $config->getLineEnding()),
-        );
-
-        return $factory;
-    }
-
-    function loadJsonFile(string $path): array
-    {
-        if (!is_file($path)) {
-            throw new RuntimeException(sprintf('Could not find required file "%s".', $path));
-        }
-
-        return json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+        return $state;
     }
 
     function loadOverrides(string $path): array
@@ -256,68 +168,6 @@ TXT);
         ksort($decoded);
 
         return $decoded;
-    }
-
-    function findFixerForRule(FixerFactory $factory, string $rule): FixerInterface
-    {
-        foreach ($factory->getFixers() as $fixer) {
-            if ($fixer->getName() === $rule) {
-                return $fixer;
-            }
-        }
-
-        throw new RuntimeException(sprintf('Could not resolve fixer instance for "%s".', $rule));
-    }
-
-    function temporarySampleRoot(): string
-    {
-        $path = sys_get_temp_dir().'/php-cs-fixer-defaults-quiz-samples';
-        ensureDirectory($path);
-
-        return $path;
-    }
-
-    function writeTemporarySample(string $relativePath, string $code): string
-    {
-        $hash = substr(hash('sha256', $relativePath."\0".$code), 0, 12);
-        $normalizedRelativePath = ltrim(str_replace('\\', '/', $relativePath), '/');
-        $targetPath = temporarySampleRoot().'/'.$hash.'/'.$normalizedRelativePath;
-        ensureDirectory(dirname($targetPath));
-
-        if (file_put_contents($targetPath, $code) === false) {
-            throw new RuntimeException(sprintf('Could not write temporary sample "%s".', $targetPath));
-        }
-
-        return $targetPath;
-    }
-
-    function ruleConfigForFactory(array $state): mixed
-    {
-        if (!$state['enabled']) {
-            return false;
-        }
-
-        return $state['parameters'] ?? true;
-    }
-
-    function renderRuleOutput(string $rule, array $state, string $code, string $relativePath, ConfigInterface $config): string
-    {
-        if (!$state['enabled']) {
-            return $code;
-        }
-
-        $absolutePath = writeTemporarySample($relativePath, $code);
-        $factory = newFixerFactory($config);
-        $factory->useRuleSet(new RuleSet([$rule => ruleConfigForFactory($state)]));
-        $fixer = findFixerForRule($factory, $rule);
-        $tokens = Tokens::fromCode($code);
-        $file = new SplFileInfo($absolutePath);
-
-        if ($fixer->supports($file) && $fixer->isCandidate($tokens)) {
-            $fixer->fix($file, $tokens);
-        }
-
-        return $tokens->generateCode();
     }
 
     function candidateFromCodeSample(string $rule, CodeSampleInterface $sample, int $index): array
@@ -368,6 +218,7 @@ TXT);
 
     function sampleScore(array $candidate, array $difference, string $pintOutput, string $phpOutput): int
     {
+        $phpCsFixerState = phpCsFixerComparisonState($difference);
         $score = 0;
         $sourceCode = $candidate['code'];
         $pintChanged = $pintOutput !== $sourceCode;
@@ -396,7 +247,7 @@ TXT);
 
         $sampleConfiguration = $candidate['sample_configuration'];
         $pintMatch = sampleMatchesState($sampleConfiguration, $difference['pint']['parameters']);
-        $phpMatch = sampleMatchesState($sampleConfiguration, $difference['php_cs_fixer']['parameters']);
+        $phpMatch = sampleMatchesState($sampleConfiguration, $phpCsFixerState['parameters']);
 
         if ($pintMatch['exact']) {
             $score += 30;
@@ -414,7 +265,7 @@ TXT);
             $score += 20;
         }
 
-        if ($sampleConfiguration === null && ($difference['pint']['parameters'] === null || $difference['php_cs_fixer']['parameters'] === null)) {
+        if ($sampleConfiguration === null && ($difference['pint']['parameters'] === null || $phpCsFixerState['parameters'] === null)) {
             $score += 5;
         }
 
@@ -440,9 +291,15 @@ TXT);
 
     function buildQuestion(array $difference, array $candidate, array $metadata, string $pintOutput, string $phpOutput, array $fixerMetadata): array
     {
+        $phpCsFixerState = phpCsFixerComparisonState($difference);
+
         return [
             'rule' => $difference['rule'],
             'category' => $difference['category'],
+            'comparison' => $difference['comparison'] ?? [
+                'case' => 'php_cs_fixer_default_vs_pint',
+                'php_cs_fixer_side' => 'raw_default',
+            ],
             'presentation' => [
                 'pint_side' => stableSideForPint($difference['rule']),
             ],
@@ -462,8 +319,8 @@ TXT);
                 'changed' => $metadata['pint_changed'],
             ],
             'php_cs_fixer' => [
-                'enabled' => $difference['php_cs_fixer']['enabled'],
-                'parameters' => $difference['php_cs_fixer']['parameters'],
+                'enabled' => $phpCsFixerState['enabled'],
+                'parameters' => $phpCsFixerState['parameters'],
                 'output' => $phpOutput,
                 'changed' => $metadata['php_cs_fixer_changed'],
             ],
@@ -489,6 +346,38 @@ TXT);
         ];
     }
 
+    function writeCliWarning(string $rule, string $message, array $errors = []): void
+    {
+        fwrite(STDERR, sprintf("[warn] %s: %s\n", $rule, $message));
+
+        foreach ($errors as $error) {
+            fwrite(
+                STDERR,
+                sprintf(
+                    "  - origin: %s\n    file: %s\n    error: %s\n    code:\n%s\n",
+                    $error['origin'],
+                    $error['file_path'],
+                    $error['message'],
+                    preg_replace('/^/m', '      ', rtrim($error['code'])),
+                ),
+            );
+        }
+    }
+
+    function filterDifferencesByRule(array $differences, ?string $rule): array
+    {
+        if ($rule === null) {
+            return $differences;
+        }
+
+        return array_values(
+            array_filter(
+                $differences,
+                static fn (array $difference): bool => ($difference['rule'] ?? null) === $rule,
+            ),
+        );
+    }
+
     function main(array $argv): void
     {
         $options = parseOptions($argv);
@@ -504,12 +393,15 @@ TXT);
             throw new RuntimeException(sprintf('Expected "%s" to contain a differences array.', $inputPath));
         }
 
+        $differences = filterDifferencesByRule($differencesDocument['differences'], $options['rule']);
         $overrides = loadOverrides($overridesPath);
-        $config = new Config();
+        $preset = is_string($differencesDocument['preset'] ?? null) ? $differencesDocument['preset'] : 'laravel';
+        $pintConfig = loadPintConfig($phar['phar_root'], $preset);
+        $phpCsFixerConfig = loadDefaultPhpCsFixerConfig();
         $questions = [];
         $skipped = [];
 
-        foreach ($differencesDocument['differences'] as $difference) {
+        foreach ($differences as $difference) {
             $rule = $difference['rule'];
 
             if (($overrides[$rule]['skip'] ?? false) === true) {
@@ -540,10 +432,15 @@ TXT);
 
             foreach ($candidates as $candidate) {
                 try {
-                    $pintOutput = renderRuleOutput($rule, $difference['pint'], $candidate['code'], $candidate['file_path'], $config);
-                    $phpCsFixerOutput = renderRuleOutput($rule, $difference['php_cs_fixer'], $candidate['code'], $candidate['file_path'], $config);
+                    $pintOutput = renderRuleOutput($rule, $difference['pint'], $candidate['code'], $candidate['file_path'], $pintConfig);
+                    $phpCsFixerOutput = renderRuleOutput($rule, phpCsFixerComparisonState($difference), $candidate['code'], $candidate['file_path'], $phpCsFixerConfig);
                 } catch (\Throwable $exception) {
-                    $errors[] = $exception->getMessage();
+                    $errors[] = [
+                        'origin' => $candidate['origin'],
+                        'file_path' => $candidate['file_path'],
+                        'code' => $candidate['code'],
+                        'message' => $exception->getMessage(),
+                    ];
 
                     continue;
                 }
@@ -567,7 +464,11 @@ TXT);
                 : 'No evaluated sample produced different Pint and PHP-CS-Fixer outputs for this rule.';
 
             if ($errors !== []) {
-                $reason .= ' Sample errors: '.implode(' | ', array_unique($errors));
+                $reason .= ' Sample errors: '.implode(
+                    ' | ',
+                    array_values(array_unique(array_map(static fn (array $error): string => $error['message'], $errors))),
+                );
+                writeCliWarning($rule, $reason, $errors);
             }
 
             $skipped[] = [
@@ -588,12 +489,12 @@ TXT);
         );
 
         $counts = [
-            'differences_total' => count($differencesDocument['differences']),
+            'differences_total' => count($differences),
             'quiz_questions' => count($questions),
             'skipped' => count($skipped),
-            'only_php_cs_fixer' => count(array_filter($questions, static fn (array $question): bool => $question['category'] === 'only_php_cs_fixer')),
-            'only_pint' => count(array_filter($questions, static fn (array $question): bool => $question['category'] === 'only_pint')),
+            'missing_from_pint' => count(array_filter($questions, static fn (array $question): bool => $question['category'] === 'missing_from_pint')),
             'different_configuration' => count(array_filter($questions, static fn (array $question): bool => $question['category'] === 'different_configuration')),
+            'pint_differs_from_rule_default' => count(array_filter($questions, static fn (array $question): bool => $question['category'] === 'pint_differs_from_rule_default')),
         ];
 
         $output = [
@@ -606,10 +507,7 @@ TXT);
             'skipped' => $skipped,
         ];
 
-        ensureDirectory(dirname($outputPath));
-
-        $json = json_encode($output, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR).PHP_EOL;
-        file_put_contents($outputPath, $json);
+        writeJson($outputPath, $output);
     }
 
     main($argv);

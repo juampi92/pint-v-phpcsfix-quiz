@@ -1,26 +1,50 @@
 {
+  "binary_operator_spaces": {
+    "code": "<?php\n\n  $aa=  1;\n\n  +$b =2;\n\n  $f    -=  1;\n"
+  },
+  "braces_position": {
+    "code": "<?php\n\n$foo = new class { };\n\n$bar = new class {\n    public function test() {\n        return true;\n    }\n};\n"
+  },
   "class_definition": {
-    "skip": true,
-    "reason": "The current Pint and PHP-CS-Fixer parameters normalize to the same output because `single_line` is enabled on both sides, so the remaining parameter differences are not observable in a standalone quiz sample."
+    "code": "<?php\n\n$obj = new class(\n    $bar,\n    $baz\n) extends Base {};\n"
   },
-  "no_unneeded_control_parentheses": {
-    "code": "<?php\n\nfunction items(iterable $items): iterable\n{\n    yield from($items);\n}\n",
-    "file_path": "app/Support/items.php",
-    "reason": "Exercises `yield_from`, which is enabled in PHP-CS-Fixer's defaults but not in Pint's preset."
+  "new_with_parentheses": {
+    "code": "<?php\n\n$y = new class() {};\n\n$x = new class {};\n"
   },
-  "phpdoc_scalar": {
-    "code": "<?php\n\n/**\n * @return never-return\n */\nfunction halt()\n{\n    exit(1);\n}\n",
-    "file_path": "app/Support/halt.php",
-    "reason": "Uses a scalar alias that PHP-CS-Fixer normalizes and Pint intentionally leaves alone."
+  "no_extra_blank_lines": {
+    "code": "<?php\n\nuse Foo;\n\nuse Bar;\n\n\n$baz = \"baz\";\n"
   },
-  "psr_autoloading": {
-    "code": "<?php\nnamespace PhpCsFixer\\FIXER\\Basic;\nclass InvalidName {}\n",
-    "file_path": "src/PhpCsFixer/FIXER/Basic/PsrAutoloadingFixer.php",
-    "reason": "This fixer depends on the file path, so the override supplies a stable path that makes the class-name correction visible."
+  "single_class_element_per_statement": {
+    "code": "<?php\nfinal class Example\n{\n    const FOO_1 = 1, FOO_2 = 2;\n\n    private static $bar1 = array(1,2,3), $bar2 = [1,2,3];\n}\n"
   },
-  "general_phpdoc_tag_rename": {
-    "skip": true,
-    "reason": "Irrelevant"
+  "single_space_around_construct": {
+    "code": "<?php\n\nfunction foo() { yield  from  baz(); }\n\nif ($foo) {\n}\n   elseif ($bar) {\n}\n"
+  },
+  "unary_operator_spaces": {
+    "code": "<?php\n$sample ++;\n\nfunction foo($a, ...   $b) {}\n"
+  },
+  "fully_qualified_strict_types": {
+    "code": "<?php\n\nnamespace Foo\\Test;\n\nclass Foo extends \\Other\\BaseClass\n{\n    /** @var \\Other\\PropertyPhpDoc */\n    private $array;\n\n    public function __construct(\\Other\\PropertyPhpDoc $arg) {}\n}\n"
+  },
+  "phpdoc_align": {
+    "code": "<?php\n/**\n * @param  EngineInterface $templating\n * @param  int  $code       response status\n * @param  mixed    &$reference  \n */\n"
+  },
+  "yoda_style": {
+    "code": "<?php\n    // Yoda style:\n    if (null === $foo) {\n        echo \"null\";\n    }\n\n    // Non-Yoda style:\n    if ($bar === null) {\n        echo \"null\";\n    }\n"
+  },
+  "single_line_comment_style": {
+    "code": "<?php\n/* first comment */\n$a = 1;\n\n/*\n * second\n * comment\n */\n$b = 2;\n\n# third comment\n$c = 3;"
+  },
+  "modifier_keywords": {
+    "code": "<?php\n\nabstract class ClassName\n{\n    const SAMPLE = 1;\n\n    static protected int $beep;\n\n    function zex() {}\n}\n"
+  },
+  "class_attributes_separation": {
+    "code": "<?php\n\nenum Status: string\n{\n    case Active = 'active';\n\n    case Inactive = 'inactive';\n\n    case Pending = 'pending';\n}\n"
+  },
+  "phpdoc_separation": {
+    "code": "<?php\n/**\n * @throws Exception|RuntimeException foo\n * @param string $foo\n *\n * @param bool   $bar Bar\n * @return int  Return the number of changes.\n */\n"
+  },
+  "phpdoc_tag_type": {
+    "skip": true
   }
 }
-

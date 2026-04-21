@@ -2,44 +2,30 @@
 
 declare(strict_types=1);
 
-namespace App\Factories {
-    function resolve(string $class): object
-    {
-        return new class
-        {
-            public function rules(): array
-            {
-                return [];
-            }
-
-            public function finder(): array
-            {
-                return [];
-            }
-        };
-    }
-
-    function abort(int $code, string $message): never
-    {
-        throw new \RuntimeException($message, $code);
-    }
-}
-
 namespace {
-    use PhpCsFixer\Config;
+    require_once __DIR__.'/lib/export-runtime.php';
+
     use PhpCsFixer\ConfigInterface;
     use PhpCsFixer\Fixer\ConfigurableFixerInterface;
     use PhpCsFixer\Fixer\FixerInterface;
-    use PhpCsFixer\FixerFactory;
-    use PhpCsFixer\RuleSet\RuleSet;
     use PhpCsFixer\RuleSet\RuleSets;
-    use PhpCsFixer\WhitespacesFixerConfig;
+    use function PhpCsFixerDefaults\Scripts\loadDefaultPhpCsFixerConfig;
+    use function PhpCsFixerDefaults\Scripts\loadPintConfig;
+    use function PhpCsFixerDefaults\Scripts\newFixerFactory;
+    use function PhpCsFixerDefaults\Scripts\normalizeOutputValue;
+    use function PhpCsFixerDefaults\Scripts\normalizeRules;
+    use function PhpCsFixerDefaults\Scripts\preparePintPhar;
+    use function PhpCsFixerDefaults\Scripts\readPharInstalledVersion;
+    use function PhpCsFixerDefaults\Scripts\readRootComposerLockVersion;
+    use function PhpCsFixerDefaults\Scripts\repositoryPath;
+    use function PhpCsFixerDefaults\Scripts\repositoryRelativePath;
+    use function PhpCsFixerDefaults\Scripts\requirePintAutoloader;
+    use function PhpCsFixerDefaults\Scripts\writeJson;
 
     const DEFAULT_OUTPUT = 'generated/pint-php-cs-fixer-differences.json';
     const DEFAULT_PRESET = 'laravel';
-    const PHP_CS_FIXER_GITHUB_BASE = 'https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/master/';
     const PINT_GITHUB_BASE = 'https://github.com/laravel/pint/blob/main/';
-    const SCHEMA_VERSION = 1;
+    const SCHEMA_VERSION = 4;
 
     function usage(): never
     {
@@ -47,7 +33,7 @@ namespace {
 
         fwrite(STDERR, <<<TXT
 Usage:
-  php scripts/{$script} [--output=generated/pint-php-cs-fixer-differences.json] [--preset=laravel]
+  php scripts/{$script} [--output=generated/pint-php-cs-fixer-differences.json] [--preset=laravel] [--rule=array_indentation]
 
 TXT);
 
@@ -59,6 +45,7 @@ TXT);
         $options = [
             'output' => DEFAULT_OUTPUT,
             'preset' => DEFAULT_PRESET,
+            'rule' => null,
         ];
 
         foreach (array_slice($argv, 1) as $arg) {
@@ -74,153 +61,31 @@ TXT);
                 continue;
             }
 
+            if (str_starts_with($arg, '--rule=')) {
+                $rule = substr($arg, strlen('--rule='));
+
+                if (!is_string($rule) || $rule === '') {
+                    usage();
+                }
+
+                $options['rule'] = $rule;
+
+                continue;
+            }
+
             usage();
         }
 
         return $options;
     }
 
-    function repositoryRoot(): string
+    function phpCsFixerGithubBase(string $version): string
     {
-        return dirname(__DIR__);
-    }
-
-    function repositoryPath(string $path): string
-    {
-        return repositoryRoot().'/'.$path;
-    }
-
-    function ensureDirectory(string $path): void
-    {
-        if (is_dir($path)) {
-            return;
+        if ($version === '' || $version === 'unknown') {
+            return 'https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/master/';
         }
 
-        if (!mkdir($path, 0777, true) && !is_dir($path)) {
-            throw new RuntimeException(sprintf('Could not create directory "%s".', $path));
-        }
-    }
-
-    function preparePintPhar(): array
-    {
-        $sourcePath = repositoryPath('vendor/laravel/pint/builds/pint');
-
-        if (!is_file($sourcePath)) {
-            throw new RuntimeException('Could not find the Pint binary under vendor/laravel/pint/builds/pint. Run composer install first.');
-        }
-
-        $targetPath = sys_get_temp_dir().'/php-cs-fixer-defaults-pint.phar';
-        $copyRequired = !is_file($targetPath);
-
-        if (!$copyRequired) {
-            $copyRequired = hash_file('sha256', $sourcePath) !== hash_file('sha256', $targetPath);
-        }
-
-        if ($copyRequired && !copy($sourcePath, $targetPath)) {
-            throw new RuntimeException(sprintf('Could not copy Pint PHAR from "%s" to "%s".', $sourcePath, $targetPath));
-        }
-
-        return [
-            'binary_path' => $sourcePath,
-            'phar_path' => $targetPath,
-            'phar_root' => 'phar://'.$targetPath,
-        ];
-    }
-
-    function requirePintAutoloader(string $pharRoot): void
-    {
-        require_once $pharRoot.'/vendor/autoload.php';
-    }
-
-    function isListArray(array $value): bool
-    {
-        return array_keys($value) === range(0, count($value) - 1);
-    }
-
-    function normalizeOutputValue(mixed $value): mixed
-    {
-        if (!is_array($value)) {
-            return $value;
-        }
-
-        if (isListArray($value)) {
-            return array_map(static fn (mixed $item): mixed => normalizeOutputValue($item), $value);
-        }
-
-        ksort($value);
-
-        foreach ($value as $key => $item) {
-            $value[$key] = normalizeOutputValue($item);
-        }
-
-        return $value;
-    }
-
-    function newFixerFactory(): FixerFactory
-    {
-        $factory = new FixerFactory();
-        $factory->registerBuiltInFixers();
-
-        if (class_exists(App\Fixers\TypeAnnotationsOnlyFixer::class)) {
-            $factory->registerCustomFixers([
-                new App\Fixers\TypeAnnotationsOnlyFixer(),
-            ]);
-        }
-
-        return $factory;
-    }
-
-    function normalizeRules(array $ruleMap, ConfigInterface $config): array
-    {
-        $factory = newFixerFactory();
-        $factory
-            ->useRuleSet(new RuleSet($ruleMap))
-            ->setWhitespacesConfig(new WhitespacesFixerConfig($config->getIndent(), $config->getLineEnding()));
-
-        $normalized = [];
-
-        foreach ($factory->getFixers() as $fixer) {
-            if ($fixer instanceof ConfigurableFixerInterface) {
-                $reflection = new ReflectionObject($fixer);
-
-                while ($reflection && !$reflection->hasProperty('configuration')) {
-                    $reflection = $reflection->getParentClass();
-                }
-
-                if (!$reflection) {
-                    throw new RuntimeException(sprintf('Could not inspect configuration for fixer "%s".', $fixer->getName()));
-                }
-
-                $property = $reflection->getProperty('configuration');
-                $property->setAccessible(true);
-
-                $value = $property->getValue($fixer);
-                $normalized[$fixer->getName()] = $value === null ? true : normalizeOutputValue($value);
-            } else {
-                $normalized[$fixer->getName()] = true;
-            }
-        }
-
-        ksort($normalized);
-
-        return $normalized;
-    }
-
-    function loadPintConfig(string $pharRoot, string $preset): ConfigInterface
-    {
-        $presetPath = sprintf('%s/resources/presets/%s.php', $pharRoot, $preset);
-
-        if (!is_file($presetPath)) {
-            throw new RuntimeException(sprintf('Could not find the "%s" Pint preset inside the installed PHAR.', $preset));
-        }
-
-        $config = require $presetPath;
-
-        if (!$config instanceof ConfigInterface) {
-            throw new RuntimeException(sprintf('The "%s" Pint preset did not return a PhpCsFixer\\ConfigInterface instance.', $preset));
-        }
-
-        return $config;
+        return 'https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/blob/'.rawurlencode($version).'/';
     }
 
     function loadPintPresetSource(string $pharRoot, string $preset): array
@@ -243,155 +108,48 @@ TXT);
         ];
     }
 
-    function shouldSkipNamedRuleset(string $name): bool
+    function compareRules(array $phpCsFixerDefaults, array $pintRules, array $phpCsFixerRuleDefaults): array
     {
-        return str_starts_with($name, '@auto');
-    }
-
-    function namedRulesetPreference(string $name): array
-    {
-        return [
-            str_contains($name, 'x') ? 1 : 0,
-            $name,
-        ];
-    }
-
-    function loadNamedRulesets(): array
-    {
-        $sets = [];
-
-        foreach (RuleSets::getSetDefinitionNames() as $name) {
-            if (shouldSkipNamedRuleset($name)) {
-                continue;
-            }
-
-            $rawRules = (new RuleSet([$name => true]))->getRules();
-
-            $sets[$name] = [
-                'name' => $name,
-                'rule_names' => array_keys($rawRules),
-                'size' => count($rawRules),
-            ];
-        }
-
-        ksort($sets);
-
-        return $sets;
-    }
-
-    function inferRulesetCover(array $pintRuleNames, array $namedSets): array
-    {
-        $memberships = [];
-
-        foreach ($pintRuleNames as $rule) {
-            $memberships[$rule] = [];
-        }
-
-        foreach ($namedSets as $name => $set) {
-            foreach ($set['rule_names'] as $rule) {
-                if (array_key_exists($rule, $memberships)) {
-                    $memberships[$rule][] = $name;
-                }
-            }
-        }
-
-        $ignoredRules = [];
-        $setBackedRules = [];
-
-        foreach ($memberships as $rule => $ruleSets) {
-            if ($ruleSets === []) {
-                $ignoredRules[] = $rule;
-
-                continue;
-            }
-
-            $setBackedRules[$rule] = true;
-        }
-
-        sort($ignoredRules);
-
-        $remaining = $setBackedRules;
-        $chosen = [];
-
-        while ($remaining !== []) {
-            $bestName = null;
-            $bestCoverage = [];
-            $bestSize = null;
-
-            foreach ($namedSets as $name => $set) {
-                $coverage = array_values(array_intersect($set['rule_names'], array_keys($remaining)));
-
-                if ($coverage === []) {
-                    continue;
-                }
-
-                if (
-                    $bestName === null
-                    || count($coverage) > count($bestCoverage)
-                    || (
-                        count($coverage) === count($bestCoverage)
-                        && (
-                            $set['size'] < $bestSize
-                            || (
-                                $set['size'] === $bestSize
-                                && namedRulesetPreference($name) < namedRulesetPreference($bestName)
-                            )
-                        )
-                    )
-                ) {
-                    $bestName = $name;
-                    $bestCoverage = $coverage;
-                    $bestSize = $set['size'];
-                }
-            }
-
-            if ($bestName === null) {
-                break;
-            }
-
-            sort($bestCoverage);
-
-            $chosen[$bestName] = [
-                'name' => $bestName,
-                'covered_rules' => $bestCoverage,
-                'size' => $namedSets[$bestName]['size'],
-            ];
-
-            foreach ($bestCoverage as $rule) {
-                unset($remaining[$rule]);
-            }
-        }
-
-        return [
-            'chosen_sets' => array_values($chosen),
-            'ignored_rules' => $ignoredRules,
-        ];
-    }
-
-    function compareRules(array $left, array $right): array
-    {
-        $onlyLeft = array_keys(array_diff_key($left, $right));
-        $onlyRight = array_keys(array_diff_key($right, $left));
-        sort($onlyLeft);
-        sort($onlyRight);
+        $missingFromPint = array_keys(array_diff_key($phpCsFixerDefaults, $pintRules));
+        sort($missingFromPint);
 
         $different = [];
 
-        foreach (array_intersect(array_keys($left), array_keys($right)) as $rule) {
-            if ($left[$rule] !== $right[$rule]) {
+        foreach (array_intersect(array_keys($phpCsFixerDefaults), array_keys($pintRules)) as $rule) {
+            if ($phpCsFixerDefaults[$rule] !== $pintRules[$rule]) {
                 $different[$rule] = [
-                    'php_cs_fixer' => $left[$rule],
-                    'pint' => $right[$rule],
+                    'php_cs_fixer_raw_default' => $phpCsFixerDefaults[$rule],
+                    'php_cs_fixer_rule_default' => $phpCsFixerRuleDefaults[$rule],
+                    'pint' => $pintRules[$rule],
                 ];
             }
         }
 
         ksort($different);
 
+        $pintDiffersFromRuleDefault = [];
+
+        foreach (array_keys(array_diff_key($pintRules, $phpCsFixerDefaults)) as $rule) {
+            if (!array_key_exists($rule, $phpCsFixerRuleDefaults)) {
+                throw new RuntimeException(sprintf('Could not resolve the PHP-CS-Fixer default rule configuration for "%s".', $rule));
+            }
+
+            if ($pintRules[$rule] === $phpCsFixerRuleDefaults[$rule]) {
+                continue;
+            }
+
+            $pintDiffersFromRuleDefault[$rule] = [
+                'php_cs_fixer_rule_default' => $phpCsFixerRuleDefaults[$rule],
+                'pint' => $pintRules[$rule],
+            ];
+        }
+
+        ksort($pintDiffersFromRuleDefault);
+
         return [
-            'only_php_cs_fixer' => $onlyLeft,
-            'only_pint' => $onlyRight,
+            'missing_from_pint' => $missingFromPint,
             'different_configuration' => $different,
+            'pint_differs_from_rule_default' => $pintDiffersFromRuleDefault,
         ];
     }
 
@@ -410,65 +168,17 @@ TXT);
         ];
     }
 
-    function readRootComposerLockVersion(string $packageName): string
-    {
-        $lockPath = repositoryPath('composer.lock');
-
-        if (!is_file($lockPath)) {
-            return 'unknown';
-        }
-
-        $lock = json_decode((string) file_get_contents($lockPath), true, 512, JSON_THROW_ON_ERROR);
-
-        foreach (['packages', 'packages-dev'] as $section) {
-            foreach ($lock[$section] ?? [] as $package) {
-                if (($package['name'] ?? null) === $packageName) {
-                    return $package['version'] ?? 'unknown';
-                }
-            }
-        }
-
-        return 'unknown';
-    }
-
-    function readPharInstalledVersion(string $pharRoot, string $packageName): string
-    {
-        $installedPath = $pharRoot.'/vendor/composer/installed.json';
-        $installed = json_decode((string) file_get_contents($installedPath), true, 512, JSON_THROW_ON_ERROR);
-
-        foreach ($installed['packages'] ?? [] as $package) {
-            if (($package['name'] ?? null) === $packageName) {
-                return $package['version'] ?? 'unknown';
-            }
-        }
-
-        return 'unknown';
-    }
-
-    function collectFixerLookup(): array
+    function collectFixerLookup(ConfigInterface $config): array
     {
         $lookup = [];
 
-        foreach (newFixerFactory()->getFixers() as $fixer) {
+        foreach (newFixerFactory($config)->getFixers() as $fixer) {
             $lookup[$fixer->getName()] = $fixer;
         }
 
         ksort($lookup);
 
         return $lookup;
-    }
-
-    function repositoryRelativePath(string $absolutePath): string
-    {
-        $root = repositoryRoot();
-        $normalized = str_replace('\\', '/', $absolutePath);
-        $normalizedRoot = str_replace('\\', '/', $root);
-
-        if (str_starts_with($normalized, $normalizedRoot.'/')) {
-            return substr($normalized, strlen($normalizedRoot) + 1);
-        }
-
-        return $normalized;
     }
 
     function normalizeSourcePathParts(string $sourcePath): array
@@ -519,7 +229,7 @@ TXT);
         return (string) preg_replace("/'[^'\\\\]*(?:\\\\.[^'\\\\]*)*'/", "''", $line);
     }
 
-    function findPintRuleEndLine(array $lines, int $startIndex): int
+    function findRuleEntryEndLine(array $lines, int $startIndex, string $contextLabel): int
     {
         $depth = 0;
         $started = false;
@@ -532,7 +242,7 @@ TXT);
             if (!$started) {
                 $arrowPosition = strpos($line, '=>');
                 if ($arrowPosition === false) {
-                    throw new RuntimeException('Could not locate rule assignment while parsing the Pint preset.');
+                    throw new RuntimeException(sprintf('Could not locate rule assignment while parsing %s.', $contextLabel));
                 }
 
                 $fragment = substr($line, $arrowPosition + 2);
@@ -547,14 +257,14 @@ TXT);
             }
         }
 
-        throw new RuntimeException('Could not determine the end of a Pint rule configuration block.');
+        throw new RuntimeException(sprintf('Could not determine the end of a rule configuration block while parsing %s.', $contextLabel));
     }
 
-    function collectPintPresetRuleReferences(array $presetSource): array
+    function collectRuleEntryReferences(array $source, string $githubBase, string $contextLabel): array
     {
         $references = [];
-        $lines = $presetSource['lines'];
-        $relativePath = $presetSource['relative_path'];
+        $lines = $source['lines'];
+        $relativePath = $source['relative_path'];
         $lineCount = count($lines);
 
         for ($index = 0; $index < $lineCount; ++$index) {
@@ -563,10 +273,10 @@ TXT);
             }
 
             $rule = $matches[1];
-            $endIndex = findPintRuleEndLine($lines, $index);
+            $endIndex = findRuleEntryEndLine($lines, $index, $contextLabel);
 
             $references[$rule] = buildGithubReference(
-                PINT_GITHUB_BASE,
+                $githubBase,
                 $relativePath,
                 $index + 1,
                 $endIndex + 1,
@@ -580,12 +290,162 @@ TXT);
         return $references;
     }
 
-    function pharVendorPath(string $sourcePath): string
+    function collectPintPresetRuleReferences(array $presetSource): array
     {
-        return normalizeSourcePathParts($sourcePath)['vendor_path'];
+        return collectRuleEntryReferences($presetSource, PINT_GITHUB_BASE, 'the Pint preset');
     }
 
-    function buildFixerMetadata(string $rule, FixerInterface $fixer): array
+    function shouldSkipPhpCsFixerRuleset(string $name): bool
+    {
+        return str_starts_with($name, '@auto');
+    }
+
+    function newPhpCsFixerConfig(bool $riskyAllowed): ConfigInterface
+    {
+        $config = loadDefaultPhpCsFixerConfig();
+
+        if (method_exists($config, 'setRiskyAllowed')) {
+            $config->setRiskyAllowed($riskyAllowed);
+        }
+
+        return $config;
+    }
+
+    function collectPhpCsFixerRulesetStates(array $targetRules, string $phpCsFixerGithubBase): array
+    {
+        $statesByRule = [];
+
+        foreach (RuleSets::getSetDefinitions() as $name => $definition) {
+            if (shouldSkipPhpCsFixerRuleset($name)) {
+                continue;
+            }
+
+            $definitionReflection = new ReflectionObject($definition);
+            $sourcePath = $definitionReflection->getFileName() ?: 'unknown';
+            $pathParts = normalizeSourcePathParts($sourcePath);
+            $internalPath = $pathParts['internal_path'];
+            $definitionReference = null;
+            $directRuleReferences = [];
+
+            if ($internalPath !== null && str_starts_with($internalPath, 'vendor/friendsofphp/php-cs-fixer/')) {
+                $repositoryPath = substr($internalPath, strlen('vendor/friendsofphp/php-cs-fixer/'));
+                $definitionReference = buildGithubReference(
+                    $phpCsFixerGithubBase,
+                    $repositoryPath,
+                    $definitionReflection->getStartLine(),
+                    $definitionReflection->getEndLine(),
+                );
+
+                $lines = file($sourcePath);
+                if ($lines === false) {
+                    throw new RuntimeException(sprintf('Could not read the PHP-CS-Fixer ruleset source for "%s".', $name));
+                }
+
+                $directRuleReferences = collectRuleEntryReferences(
+                    [
+                        'relative_path' => $repositoryPath,
+                        'lines' => $lines,
+                    ],
+                    $phpCsFixerGithubBase,
+                    sprintf('the PHP-CS-Fixer ruleset "%s"', $name),
+                );
+            }
+
+            $effectiveRules = normalizeRules(
+                [$name => true],
+                newPhpCsFixerConfig($definition->isRisky()),
+            );
+
+            foreach ($effectiveRules as $rule => $value) {
+                if (!isset($targetRules[$rule])) {
+                    continue;
+                }
+
+                $declaredDirectly = isset($directRuleReferences[$rule]);
+
+                $statesByRule[$rule][] = [
+                    'name' => $definition->getName(),
+                    'description' => $definition->getDescription(),
+                    'risky' => $definition->isRisky(),
+                    'declared_directly' => $declaredDirectly,
+                    'state' => normalizeRuleState(true, $value),
+                    'references' => [
+                        'definition' => $definitionReference,
+                        'rule' => $declaredDirectly ? ($directRuleReferences[$rule] ?? null) : null,
+                    ],
+                ];
+            }
+        }
+
+        foreach ($statesByRule as &$ruleStates) {
+            usort(
+                $ruleStates,
+                static fn (array $left, array $right): int => [
+                    $left['declared_directly'] ? 0 : 1,
+                    $left['risky'] ? 1 : 0,
+                    $left['name'],
+                ] <=> [
+                    $right['declared_directly'] ? 0 : 1,
+                    $right['risky'] ? 1 : 0,
+                    $right['name'],
+                ],
+            );
+        }
+        unset($ruleStates);
+
+        ksort($statesByRule);
+
+        return $statesByRule;
+    }
+
+    function collectPhpCsFixerRuleDefaultStates(array $targetRules, array $fixerLookup): array
+    {
+        $states = [];
+
+        foreach (array_keys($targetRules) as $rule) {
+            if (!isset($fixerLookup[$rule])) {
+                throw new RuntimeException(sprintf('Could not resolve fixer metadata for "%s".', $rule));
+            }
+
+            $fixer = $fixerLookup[$rule];
+            $normalized = normalizeRules(
+                [$rule => true],
+                newPhpCsFixerConfig($fixer->isRisky()),
+            );
+
+            if (!array_key_exists($rule, $normalized)) {
+                throw new RuntimeException(sprintf('Could not resolve the intrinsic PHP-CS-Fixer configuration for "%s".', $rule));
+            }
+
+            $states[$rule] = $normalized[$rule];
+        }
+
+        ksort($states);
+
+        return $states;
+    }
+
+    function buildRuleSetMembership(array $ruleStates): array
+    {
+        $membership = [
+            'direct' => [],
+            'inherited' => [],
+        ];
+
+        foreach ($ruleStates as $ruleState) {
+            if ($ruleState['declared_directly']) {
+                $membership['direct'][] = $ruleState['name'];
+
+                continue;
+            }
+
+            $membership['inherited'][] = $ruleState['name'];
+        }
+
+        return $membership;
+    }
+
+    function buildFixerMetadata(FixerInterface $fixer, string $phpCsFixerGithubBase): array
     {
         $reflection = new ReflectionClass($fixer);
         $sourcePath = $reflection->getFileName() ?: 'unknown';
@@ -596,7 +456,7 @@ TXT);
         if ($internalPath !== null && str_starts_with($internalPath, 'vendor/friendsofphp/php-cs-fixer/')) {
             $repositoryPath = substr($internalPath, strlen('vendor/friendsofphp/php-cs-fixer/'));
             $githubReference = buildGithubReference(
-                PHP_CS_FIXER_GITHUB_BASE,
+                $phpCsFixerGithubBase,
                 $repositoryPath,
                 $reflection->getStartLine(),
                 $reflection->getEndLine(),
@@ -614,25 +474,39 @@ TXT);
     function buildDifferences(
         array $comparison,
         array $phpCsFixerRules,
+        array $phpCsFixerRuleDefaults,
         array $pintRules,
+        array $phpCsFixerRulesetStates,
         array $fixerLookup,
-        array $pintPresetRuleReferences
+        array $pintPresetRuleReferences,
+        string $phpCsFixerGithubBase
     ): array
     {
         $differences = [];
 
-        foreach ($comparison['only_php_cs_fixer'] as $rule) {
+        foreach ($comparison['missing_from_pint'] as $rule) {
             if (!isset($fixerLookup[$rule])) {
                 throw new RuntimeException(sprintf('Could not resolve fixer metadata for "%s".', $rule));
             }
 
-            $fixerMetadata = buildFixerMetadata($rule, $fixerLookup[$rule]);
+            $fixerMetadata = buildFixerMetadata($fixerLookup[$rule], $phpCsFixerGithubBase);
+            $ruleStates = $phpCsFixerRulesetStates[$rule] ?? [];
 
             $differences[] = [
                 'rule' => $rule,
-                'category' => 'only_php_cs_fixer',
+                'category' => 'missing_from_pint',
+                'comparison' => [
+                    'case' => 'php_cs_fixer_default_vs_pint',
+                    'php_cs_fixer_side' => 'raw_default',
+                ],
                 'pint' => normalizeRuleState(false, null),
-                'php_cs_fixer' => normalizeRuleState(true, $phpCsFixerRules[$rule]),
+                'php_cs_fixer' => [
+                    'comparison' => normalizeRuleState(true, $phpCsFixerRules[$rule]),
+                    'raw_default' => normalizeRuleState(true, $phpCsFixerRules[$rule]),
+                    'rule_default' => normalizeRuleState(true, $phpCsFixerRuleDefaults[$rule]),
+                ],
+                'php_cs_fixer_rule_set_membership' => buildRuleSetMembership($ruleStates),
+                'php_cs_fixer_rulesets' => $ruleStates,
                 'fixer' => $fixerMetadata,
                 'references' => [
                     'php_cs_fixer' => $fixerMetadata['github'],
@@ -641,18 +515,29 @@ TXT);
             ];
         }
 
-        foreach ($comparison['only_pint'] as $rule) {
+        foreach ($comparison['pint_differs_from_rule_default'] as $rule => $values) {
             if (!isset($fixerLookup[$rule])) {
                 throw new RuntimeException(sprintf('Could not resolve fixer metadata for "%s".', $rule));
             }
 
-            $fixerMetadata = buildFixerMetadata($rule, $fixerLookup[$rule]);
+            $fixerMetadata = buildFixerMetadata($fixerLookup[$rule], $phpCsFixerGithubBase);
+            $ruleStates = $phpCsFixerRulesetStates[$rule] ?? [];
 
             $differences[] = [
                 'rule' => $rule,
-                'category' => 'only_pint',
-                'pint' => normalizeRuleState(true, $pintRules[$rule]),
-                'php_cs_fixer' => normalizeRuleState(false, null),
+                'category' => 'pint_differs_from_rule_default',
+                'comparison' => [
+                    'case' => 'pint_vs_php_cs_fixer_rule_default',
+                    'php_cs_fixer_side' => 'rule_default',
+                ],
+                'pint' => normalizeRuleState(true, $values['pint']),
+                'php_cs_fixer' => [
+                    'comparison' => normalizeRuleState(true, $values['php_cs_fixer_rule_default']),
+                    'raw_default' => normalizeRuleState(false, null),
+                    'rule_default' => normalizeRuleState(true, $values['php_cs_fixer_rule_default']),
+                ],
+                'php_cs_fixer_rule_set_membership' => buildRuleSetMembership($ruleStates),
+                'php_cs_fixer_rulesets' => $ruleStates,
                 'fixer' => $fixerMetadata,
                 'references' => [
                     'php_cs_fixer' => $fixerMetadata['github'],
@@ -666,13 +551,24 @@ TXT);
                 throw new RuntimeException(sprintf('Could not resolve fixer metadata for "%s".', $rule));
             }
 
-            $fixerMetadata = buildFixerMetadata($rule, $fixerLookup[$rule]);
+            $fixerMetadata = buildFixerMetadata($fixerLookup[$rule], $phpCsFixerGithubBase);
+            $ruleStates = $phpCsFixerRulesetStates[$rule] ?? [];
 
             $differences[] = [
                 'rule' => $rule,
                 'category' => 'different_configuration',
+                'comparison' => [
+                    'case' => 'php_cs_fixer_default_vs_pint',
+                    'php_cs_fixer_side' => 'raw_default',
+                ],
                 'pint' => normalizeRuleState(true, $values['pint']),
-                'php_cs_fixer' => normalizeRuleState(true, $values['php_cs_fixer']),
+                'php_cs_fixer' => [
+                    'comparison' => normalizeRuleState(true, $values['php_cs_fixer_raw_default']),
+                    'raw_default' => normalizeRuleState(true, $values['php_cs_fixer_raw_default']),
+                    'rule_default' => normalizeRuleState(true, $values['php_cs_fixer_rule_default']),
+                ],
+                'php_cs_fixer_rule_set_membership' => buildRuleSetMembership($ruleStates),
+                'php_cs_fixer_rulesets' => $ruleStates,
                 'fixer' => $fixerMetadata,
                 'references' => [
                     'php_cs_fixer' => $fixerMetadata['github'],
@@ -689,11 +585,52 @@ TXT);
         return $differences;
     }
 
+    function comparisonRuleNames(array $comparison): array
+    {
+        $ruleNames = array_merge(
+            $comparison['missing_from_pint'],
+            array_keys($comparison['different_configuration']),
+            array_keys($comparison['pint_differs_from_rule_default']),
+        );
+
+        $lookup = [];
+
+        foreach ($ruleNames as $rule) {
+            $lookup[$rule] = true;
+        }
+
+        ksort($lookup);
+
+        return $lookup;
+    }
+
+    function filterComparisonByRule(array $comparison, ?string $rule): array
+    {
+        if ($rule === null) {
+            return $comparison;
+        }
+
+        return [
+            'missing_from_pint' => array_values(
+                array_filter(
+                    $comparison['missing_from_pint'],
+                    static fn (string $candidate): bool => $candidate === $rule,
+                ),
+            ),
+            'different_configuration' => isset($comparison['different_configuration'][$rule])
+                ? [$rule => $comparison['different_configuration'][$rule]]
+                : [],
+            'pint_differs_from_rule_default' => isset($comparison['pint_differs_from_rule_default'][$rule])
+                ? [$rule => $comparison['pint_differs_from_rule_default'][$rule]]
+                : [],
+        ];
+    }
+
     function buildReport(
         string $preset,
         string $pintVersion,
         string $phpCsFixerVersion,
-        array $rulesetCover,
+        array $phpCsFixerDefaults,
         array $comparison,
         array $differences,
         string $outputPath
@@ -707,40 +644,24 @@ TXT);
                 'friendsofphp/php-cs-fixer' => $phpCsFixerVersion,
             ],
             'baseline' => [
-                'strategy' => 'default_php_cs_fixer_plus_inferred_pint_named_rulesets',
-                'inferred_named_rulesets' => $rulesetCover['chosen_sets'],
-                'ignored_pint_rules_outside_named_rulesets' => $rulesetCover['ignored_rules'],
+                'strategy' => 'php_cs_fixer_raw_defaults_then_rule_defaults_for_pint_only_rules',
+                'php_cs_fixer_defaults' => $phpCsFixerDefaults,
             ],
             'counts' => [
                 'differences' => count($differences),
-                'only_php_cs_fixer' => count($comparison['only_php_cs_fixer']),
-                'only_pint' => count($comparison['only_pint']),
+                'missing_from_pint' => count($comparison['missing_from_pint']),
                 'different_configuration' => count($comparison['different_configuration']),
+                'pint_differs_from_rule_default' => count($comparison['pint_differs_from_rule_default']),
             ],
             'differences' => $differences,
             'limitations' => [
-                'The comparison only knows about the named PHP-CS-Fixer rulesets that can be inferred from the installed Pint preset.',
-                'If PHP-CS-Fixer adds new rules and Pint has not adopted them yet, this export will not treat those unseen rules as Pint differences automatically.',
+                'Rules enabled by the raw PHP-CS-Fixer defaults are compared directly against Pint.',
+                'Rules enabled only by Pint are compared against the intrinsic PHP-CS-Fixer fixer defaults that would apply if that rule were enabled in isolation.',
+                'Each difference also lists non-@auto PHP-CS-Fixer rulesets that contain the rule and the normalized effective rule state within each ruleset.',
+                'Automatic @auto* PHP-CS-Fixer rulesets are intentionally omitted from the per-rule ruleset metadata because their effective target depends on environment and project PHP-version detection.',
                 'Fixer paths inside the JSON use the installed Pint PHAR path plus the internal PHAR file path, separated by "::".',
             ],
         ];
-    }
-
-    function writeJson(string $path, array $data): void
-    {
-        ensureDirectory(dirname($path));
-
-        $json = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES).PHP_EOL;
-
-        if ($json === false) {
-            throw new RuntimeException('Could not encode the differences report as JSON.');
-        }
-
-        if (is_file($path) && file_get_contents($path) === $json) {
-            return;
-        }
-
-        file_put_contents($path, $json);
     }
 
     function main(array $argv): int
@@ -753,43 +674,42 @@ TXT);
 
         $pintVersion = readRootComposerLockVersion('laravel/pint');
         $phpCsFixerVersion = readPharInstalledVersion($paths['phar_root'], 'friendsofphp/php-cs-fixer');
+        $phpCsFixerGithubBase = phpCsFixerGithubBase($phpCsFixerVersion);
 
-        $phpCsFixerConfig = new Config();
+        $phpCsFixerConfig = loadDefaultPhpCsFixerConfig();
         $pintConfig = loadPintConfig($paths['phar_root'], $options['preset']);
         $pintPresetSource = loadPintPresetSource($paths['phar_root'], $options['preset']);
         $pintPresetRuleReferences = collectPintPresetRuleReferences($pintPresetSource);
+        $fixerLookup = collectFixerLookup($pintConfig);
 
-        $namedSets = loadNamedRulesets();
-        $pintRuleNames = array_keys((new RuleSet($pintConfig->getRules()))->getRules());
-        $rulesetCover = inferRulesetCover($pintRuleNames, $namedSets);
-
-        $augmentedPhpCsFixerRuleMap = $phpCsFixerConfig->getRules();
-        foreach ($rulesetCover['chosen_sets'] as $set) {
-            $augmentedPhpCsFixerRuleMap[$set['name']] = true;
-        }
-
-        $augmentedPhpCsFixerRules = normalizeRules($augmentedPhpCsFixerRuleMap, $phpCsFixerConfig);
+        $phpCsFixerDefaults = normalizeRules($phpCsFixerConfig->getRules(), $phpCsFixerConfig);
         $pintRules = normalizeRules($pintConfig->getRules(), $pintConfig);
-
-        foreach ($rulesetCover['ignored_rules'] as $rule) {
-            unset($pintRules[$rule]);
+        $comparisonRuleLookup = [];
+        foreach (array_keys($phpCsFixerDefaults + $pintRules) as $rule) {
+            $comparisonRuleLookup[$rule] = true;
         }
-
-        $comparison = compareRules($augmentedPhpCsFixerRules, $pintRules);
-        $fixerLookup = collectFixerLookup();
+        $phpCsFixerRuleDefaults = collectPhpCsFixerRuleDefaultStates($comparisonRuleLookup, $fixerLookup);
+        $comparison = filterComparisonByRule(compareRules($phpCsFixerDefaults, $pintRules, $phpCsFixerRuleDefaults), $options['rule']);
+        $phpCsFixerRulesetStates = collectPhpCsFixerRulesetStates(
+            comparisonRuleNames($comparison),
+            $phpCsFixerGithubBase,
+        );
         $differences = buildDifferences(
             $comparison,
-            $augmentedPhpCsFixerRules,
+            $phpCsFixerDefaults,
+            $phpCsFixerRuleDefaults,
             $pintRules,
+            $phpCsFixerRulesetStates,
             $fixerLookup,
             $pintPresetRuleReferences,
+            $phpCsFixerGithubBase,
         );
 
         $report = buildReport(
             $options['preset'],
             $pintVersion,
             $phpCsFixerVersion,
-            $rulesetCover,
+            normalizeOutputValue($phpCsFixerConfig->getRules()),
             $comparison,
             $differences,
             $outputPath,
