@@ -1,31 +1,27 @@
-<svelte:head>
-  <title>Pint vs PHP-CS-Fixer Quiz</title>
-</svelte:head>
-
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import HeroSection from './lib/components/HeroSection.svelte';
-  import Keycap from './lib/components/Keycap.svelte';
-  import FormatterExport from './lib/components/FormatterExport.svelte';
-  import NavigationPanel from './lib/components/NavigationPanel.svelte';
-  import QuestionCard from './lib/components/QuestionCard.svelte';
-  import ScoreSummary from './lib/components/ScoreSummary.svelte';
+  import { onMount } from "svelte";
+  import HeroSection from "./lib/components/HeroSection.svelte";
+  import Keycap from "./lib/components/Keycap.svelte";
+  import FormatterExport from "./lib/components/FormatterExport.svelte";
+  import NavigationPanel from "./lib/components/NavigationPanel.svelte";
+  import QuestionCard from "./lib/components/QuestionCard.svelte";
+  import ScoreSummary from "./lib/components/ScoreSummary.svelte";
   import {
     formatRuleName,
     questions,
     quizDocument,
     storageKey,
-  } from './lib/data';
-  import { buildFormatterExportSections } from './lib/formatter-export';
-  import { buildResultProfile } from './lib/results';
+  } from "./lib/data";
+  import { buildFormatterExportSections } from "./lib/formatter-export";
+  import { buildResultProfile } from "./lib/results";
   import {
     AUTO_ADVANCE_DELAY,
     animateVerticalScroll,
     findClosestSectionIndex,
     getSectionScrollTop,
     isEditableKeyboardTarget,
-  } from './lib/navigation';
-  import type { AnswerSide, StoredAnswers, UiPreferences } from './lib/types';
+  } from "./lib/navigation";
+  import type { AnswerSide, StoredAnswers, UiPreferences } from "./lib/types";
 
   let answers: Record<string, AnswerSide> = {};
   let hydrated = false;
@@ -49,32 +45,34 @@
 
   $: answeredCount = Object.keys(answers).length;
   $: completionPercent =
-    questions.length > 0 ? Math.round((answeredCount / questions.length) * 100) : 0;
+    questions.length > 0
+      ? Math.round((answeredCount / questions.length) * 100)
+      : 0;
   $: summarySelected = selectedSectionIndex === questions.length;
   $: resultProfile = buildResultProfile(questions, answers);
   $: formatterExportSections = buildFormatterExportSections(questions, answers);
   $: selectedRuleName =
     selectedSectionIndex < 0
-      ? 'Choose a rule to begin'
+      ? "Choose a rule to begin"
       : summarySelected
-        ? 'Your formatter profile'
-        : formatRuleName(questions[selectedSectionIndex]?.rule ?? '');
+        ? "Your formatter profile"
+        : formatRuleName(questions[selectedSectionIndex]?.rule ?? "");
   $: selectedPositionLabel =
     selectedSectionIndex < 0
-      ? 'No rule selected'
+      ? "No rule selected"
       : summarySelected
-        ? 'Results'
+        ? "Results"
         : `Rule ${selectedSectionIndex + 1} of ${questions.length}`;
   $: hasNextSection = selectedSectionIndex < totalSections - 1;
 
   function sanitizeAnswers(value: unknown): Record<string, AnswerSide> {
-    if (!value || typeof value !== 'object') {
+    if (!value || typeof value !== "object") {
       return {};
     }
 
     const entries = Object.entries(value as Record<string, unknown>).filter(
       ([rule, side]) =>
-        validRules.has(rule) && (side === 'left' || side === 'right'),
+        validRules.has(rule) && (side === "left" || side === "right"),
     );
 
     return Object.fromEntries(entries) as Record<string, AnswerSide>;
@@ -164,7 +162,9 @@
   }
 
   function isInsideSettingsDrawer(target: EventTarget | null): boolean {
-    return target instanceof Element && target.closest('.settings-drawer') !== null;
+    return (
+      target instanceof Element && target.closest(".settings-drawer") !== null
+    );
   }
 
   function getStickyOffset(): number {
@@ -172,8 +172,9 @@
   }
 
   function getSections(): HTMLElement[] {
-    const questionSections = Array.from({ length: questions.length }, (_, index) =>
-      questionNodes.get(index),
+    const questionSections = Array.from(
+      { length: questions.length },
+      (_, index) => questionNodes.get(index),
     ).filter((node): node is HTMLElement => node !== undefined);
 
     return summaryNode ? [...questionSections, summaryNode] : questionSections;
@@ -208,7 +209,10 @@
     });
   }
 
-  function scrollToSection(index: number, options: { instant?: boolean } = {}): void {
+  function scrollToSection(
+    index: number,
+    options: { instant?: boolean } = {},
+  ): void {
     if (!scrollNode) {
       return;
     }
@@ -330,7 +334,12 @@
   }
 
   function handleKeydown(event: KeyboardEvent): void {
-    if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey) {
+    if (
+      event.defaultPrevented ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey
+    ) {
       return;
     }
 
@@ -339,21 +348,21 @@
     }
 
     if (
-      event.key === 'ArrowUp' ||
-      event.key === 'ArrowDown' ||
-      event.key === 'ArrowLeft' ||
-      event.key === 'ArrowRight'
+      event.key === "ArrowUp" ||
+      event.key === "ArrowDown" ||
+      event.key === "ArrowLeft" ||
+      event.key === "ArrowRight"
     ) {
       closeSettings();
     }
 
-    if (event.key === 'ArrowUp') {
+    if (event.key === "ArrowUp") {
       event.preventDefault();
       moveSelection(-1);
       return;
     }
 
-    if (event.key === 'ArrowDown') {
+    if (event.key === "ArrowDown") {
       event.preventDefault();
       moveSelection(1);
       return;
@@ -363,19 +372,19 @@
       return;
     }
 
-    if (event.key === 'ArrowLeft') {
+    if (event.key === "ArrowLeft") {
       event.preventDefault();
-      handleChoose(selectedSectionIndex, 'left');
+      handleChoose(selectedSectionIndex, "left");
       return;
     }
 
-    if (event.key === 'ArrowRight') {
+    if (event.key === "ArrowRight") {
       event.preventDefault();
-      handleChoose(selectedSectionIndex, 'right');
+      handleChoose(selectedSectionIndex, "right");
       return;
     }
 
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       closeSettings();
     }
   }
@@ -436,11 +445,11 @@
       const onWheel = (event: WheelEvent) => handleUserScrollIntent(event);
       const onTouchStart = (event: TouchEvent) => handleUserScrollIntent(event);
 
-      node.addEventListener('wheel', onWheel, { passive: true });
-      node.addEventListener('touchstart', onTouchStart, { passive: true });
+      node.addEventListener("wheel", onWheel, { passive: true });
+      node.addEventListener("touchstart", onTouchStart, { passive: true });
 
-      detachWheel = () => node.removeEventListener('wheel', onWheel);
-      detachTouch = () => node.removeEventListener('touchstart', onTouchStart);
+      detachWheel = () => node.removeEventListener("wheel", onWheel);
+      detachTouch = () => node.removeEventListener("touchstart", onTouchStart);
     }
 
     return () => {
@@ -464,6 +473,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>Pint vs PHP-CS-Fixer Quiz</title>
+</svelte:head>
+
 <svelte:window on:keydown={handleKeydown} />
 
 <div class="page-shell">
@@ -483,18 +496,18 @@
       >
         <div class="quiz-nav">
           <div class="quiz-nav-copy selection-copy">
-            <span class="panel-eyebrow">{summarySelected ? 'Results' : 'Selected rule'}</span>
+            <span class="panel-eyebrow"
+              >{summarySelected ? "Results" : "Selected rule"}</span
+            >
             <strong>{selectedPositionLabel}</strong>
             <p>{selectedRuleName}</p>
           </div>
 
           <div class="quiz-nav-progress">
             <span class="progress-pill">{completionPercent}% complete</span>
-            <div
-              aria-hidden="true"
-              class="progress-track"
-            >
-              <span class="progress-fill" style:width={`${completionPercent}%`}></span>
+            <div aria-hidden="true" class="progress-track">
+              <span class="progress-fill" style:width={`${completionPercent}%`}
+              ></span>
             </div>
           </div>
 
@@ -530,12 +543,9 @@
           </div>
         </div>
 
-        <div
-          class:open={settingsOpen}
-          class="settings-drawer"
-        >
+        <div class:open={settingsOpen} class="settings-drawer">
           <NavigationPanel
-            autoAdvanceEnabled={autoAdvanceEnabled}
+            {autoAdvanceEnabled}
             onResetProgress={resetAnswers}
             onToggleAutoAdvance={handleAutoAdvanceToggle}
           />
@@ -569,15 +579,9 @@
         {/each}
       </section>
 
-      <section
-        use:trackSummary
-        class="summary-slot"
-      >
+      <section use:trackSummary class="summary-slot">
         <footer>
-          <ScoreSummary
-            {answers}
-            {questions}
-          />
+          <ScoreSummary {answers} {questions} />
 
           <section class="footer-summary">
             <FormatterExport
@@ -588,13 +592,8 @@
             <section class="footer-meta">
               <div class="footer-credits">
                 <p>
-                  <span>Copyright {currentYear}</span> | 
-                  directed by
-                  <a
-                    href="https://barreto.jp"
-                    rel="noreferrer"
-                    target="_self"
-                  >
+                  Directed by
+                  <a href="https://barreto.jp" rel="noreferrer" target="_self">
                     juampi92
                   </a>
                 </p>
@@ -604,12 +603,16 @@
                 <div class="footer-version-grid">
                   <div class="footer-version-card">
                     <strong>Laravel Pint</strong>
-                    <p>{quizDocument.package_versions['laravel/pint']}</p>
+                    <p>{quizDocument.package_versions["laravel/pint"]}</p>
                   </div>
 
                   <div class="footer-version-card">
                     <strong>PHP-CS-Fixer</strong>
-                    <p>{quizDocument.package_versions['friendsofphp/php-cs-fixer']}</p>
+                    <p>
+                      {quizDocument.package_versions[
+                        "friendsofphp/php-cs-fixer"
+                      ]}
+                    </p>
                   </div>
                 </div>
               </div>
