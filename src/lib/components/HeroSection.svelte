@@ -7,14 +7,14 @@
 <section class="hero">
   <div class="hero-copy">
     <div class="hero-meta">
-      <span class="hero-kicker">Pint vs PHP-CS-Fixer Quiz</span>
-      <span class="hero-meta-note">Side-by-side comparison to help you find your style.</span>
+      <span class="hero-kicker">PHP-CS-Fixer defaults vs. Laravel Pint</span>
+      <span class="hero-meta-note">Compare both configurations, rule by rule, side by side.</span>
     </div>
 
-    <h1>Blind test your linting preferences.</h1>
+    <h1>Compare linting configs and find where your taste lands.</h1>
 
     <p class="hero-lead">
-      Compare <span class="tool-pint">Laravel Pint</span> and <span class="tool-php_cs_fixer">PHP-CS-Fixer</span> one rule at a time. Vote on the code you prefer, and then see whether it feels closer to Pint's opinionated config or PHP-CS-Fixer's default.
+      <span class="tool-pint">Laravel Pint</span> is a <span class="tool-php_cs_fixer">PHP-CS-Fixer</span> config with curated defaults. Here you compare them against PHP-CS-Fixer's own defaults, one rule at a time. Vote on the code you prefer — maybe you'll drop Pint, keep it, or just understand it better.
     </p>
 
     <div class="hero-summary">
@@ -40,7 +40,7 @@
       </div>
 
       <span class="hero-sketch-note">
-        Pick the style you prefer, and discover your tool.
+        Pick your output. Discover your own lint alignment.
       </span>
     </div>
 
